@@ -6,6 +6,8 @@ include '../php/main.php';
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/nav.css">
 	<title></title>
 </head>
 <?php 

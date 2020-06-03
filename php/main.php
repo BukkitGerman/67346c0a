@@ -19,10 +19,10 @@ function showNavigation($aktive, $userid = false){
 			if($aktive == "home"){
 				echo "
 					<li class='active'><a href='/''>Home</a></li>
-        			<li><a href='changelog.php'>Changelog</a></li>
-        			<li><a href='news.php'>News</a></li>
-        			<li><a href='request.php'>Requests</a></li>
-        			<li><a href='disscussion.php'>Disscussion</a></li>
+        			<li><a href='/pages/changelog.php'>Changelog</a></li>
+        			<li><a href='/pages/news.php'>News</a></li>
+        			<li><a href='/pages/request.php'>Requests</a></li>
+        			<li><a href='/pages/disscussion.php'>Disscussion</a></li>
         			";
         		if(isset($userid) && $userid != false){
         			if($permission >= 2){
@@ -38,11 +38,11 @@ function showNavigation($aktive, $userid = false){
 
 				if($userid == false){
         			echo "
-        			<li><a href='login.php'>Login</a></li>
+        			<li style='float:right'><a href='login.php'>Login</a></li>
 				";
 				}elseif(isset($userid) && $userid != false){
 					echo "
-        			<li><a href='logout.php'>Logout</a></li>
+        			<li style='float:right'><a href='logout.php'>Logout</a></li>
 				";
 				}
 		

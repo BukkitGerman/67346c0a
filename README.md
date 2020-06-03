@@ -80,10 +80,10 @@ A 67346c0a Projekt.
 	- Showes the Navigationbar with the Active tab.
 
 - showSidebar()
-	- Showes the Sidebar 
+	- Showes the Sidebar
 
 - showFooter()
-	- Showes the footer with Copyright.
+	- Showes the footer with Copyright. Includes a link to the Impressum
 
 ---
 ### Functionality

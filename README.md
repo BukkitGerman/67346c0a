@@ -2,14 +2,15 @@
 
 A 67346c0a Projekt.
 
-
+---
 ## TODO
 
 - Implement Teamspeak 3 Framework
 - Add PhP Functions
 - Build the Site Skeleton
 
-### Structure
+---
+### Site Structure
 
 - Home | TS3 Server Status in Sidebar
 - Changelog
@@ -28,7 +29,7 @@ A 67346c0a Projekt.
 - Profile Page (Only Visibil for Registered users)
 - Login / Register | Logout (When user is Logged in)
 
-
+---
 ### Database Structure
 
 #### Tables
@@ -72,7 +73,7 @@ A 67346c0a Projekt.
 	
 
 
-
+---
 ### PHP Functions
 
 - showNavigation($aktive)
@@ -84,6 +85,7 @@ A 67346c0a Projekt.
 - showFooter()
 	- Showes the footer with Copyright.
 
+---
 ### Functionality
 
 - Teamspeak Link

@@ -4,12 +4,14 @@ $db = new SQLite3("../database/database.db");
 function showNavigation($aktive, $userid = false){
 	if(isset($userid) && $userid != false){ //get user permission if userid isset & not false.
 
-		$result = $db->prepare('SELECT permission FROM permissions WHERE uid = :uid');
+		$result = $db->prepare("SELECT permission FROM permissions WHERE uid = :uid");
 		$result->bindValue(':uid', $userid);
 		$result = $result->execute();
 		$result = $result->fetchArray();
 		$permission = $result['permission'];
 	}
+
+	//Show the Navigationbar
 
 	echo "<nav>
 			<ul>";
@@ -34,7 +36,7 @@ function showNavigation($aktive, $userid = false){
         			";
 				}
 
-				if(!isset($userid) && $userid == false){
+				if($userid == false){
         			echo "
         			<li><a href='login.php'>Login</a></li>
 				";

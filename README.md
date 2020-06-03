@@ -3,13 +3,13 @@
 A 67346c0a Projekt.
 
 
-##TODO
+## TODO
 
 - Implement Teamspeak 3 Framework
 - Add PhP Functions
 - Build the Site Skeleton
 
-###Structure
+### Structure
 
 - Home | TS3 Server Status in Sidebar
 - Changelog
@@ -29,9 +29,9 @@ A 67346c0a Projekt.
 - Login / Register | Logout (When user is Logged in)
 
 
-###Database Structure
+### Database Structure
 
-####Tables
+#### Tables
 
 - users
 	- id (Primary Key, INTEGER, AUTOINCREMENT)
@@ -47,7 +47,7 @@ A 67346c0a Projekt.
 		email VARCHAR(255) NOT NULL, 
 		passwort VARCHAR(255) NOT NULL,
 		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)
-    ```
+    ``
 - permissions
 	- id (Primary Key, INTEGER, AUTOINCREMENT)
 	- uid (INTEGER)
@@ -73,7 +73,7 @@ A 67346c0a Projekt.
 
 
 
-###PHP Functions
+### PHP Functions
 
 - showNavigation($aktive)
 	- Showes the Navigationbar with the Active tab.
@@ -84,7 +84,7 @@ A 67346c0a Projekt.
 - showFooter()
 	- Showes the footer with Copyright.
 
-###Functionality
+### Functionality
 
 - Teamspeak Link
 	- Link Teamspeak Groups with Page Permission

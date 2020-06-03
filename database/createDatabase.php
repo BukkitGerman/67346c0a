@@ -1,0 +1,16 @@
+<?php
+	$db = new SQLite3("database.db");
+
+	$db->exec("CREATE TABLE IF NOT EXISTS users(
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		username VARCHAR(64) NOT NULL,
+		email VARCHAR(255) NOT NULL, 
+		passwort VARCHAR(255) NOT NULL,
+		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)");
+
+	$db->exec("CREATE TABLE IF NOT EXISTS permissions(
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		uid INTEGER NOT NULL,
+		permission INTEGER NOT NULL, 
+		developer INTEGER NOT NULL)");
+?>

@@ -48,7 +48,7 @@ A 67346c0a Projekt.
 		email VARCHAR(255) NOT NULL, 
 		passwort VARCHAR(255) NOT NULL,
 		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)
-    ``
+    	```
 - permissions
 	- id (Primary Key, INTEGER, AUTOINCREMENT)
 	- uid (INTEGER)

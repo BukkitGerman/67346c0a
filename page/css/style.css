@@ -1,0 +1,131 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Roboto Mono', monospace;
+}
+
+.content {
+	background-color: red;
+	margin: 6rem 1rem 4rem 1rem;
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+}
+
+.outer-item {
+	display: flex;
+	flex-direction: column;
+}
+
+.statusbar-item {
+	position: fixed;
+	left: 10%;
+	bottom: 1rem;
+	background-color: blue;
+	width: 80%;
+	height: 4rem;
+}
+
+.content-login {
+	margin: 6rem 1rem 4rem 1rem;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	justify-content: center;
+}
+
+#login{
+	margin-top: 1rem;
+	padding: 1rem;
+	border-radius: 30px;
+	border: 2px solid #EBECF1;
+}
+
+#login h1 {
+	position: relative;
+	left: 35%;
+}
+
+#login form input{
+	position: relative;
+	top: 10%;
+	left: 10%;
+	size: 80%;
+	border-radius: 4px;
+	border-width: 2px;
+	border-top-style: inset;
+	border-bottom-style: outset;
+	border-left-style: hidden;
+	border-right-style: hidden;
+	text-align: center;
+}
+
+#login form label{
+	position: relative;
+	left: 40%;
+
+}
+
+#login form input[type=submit] {
+	font-size: 110%;
+	size: 10%;
+	left: 20%;
+	width: 60%;
+	height: 2rem;
+}
+
+.content-reg {
+	margin: 6rem 1rem 4rem 1rem;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	justify-content: center;
+}
+
+#reg{
+	margin-top: 1rem;
+	padding: 1rem;
+	border-radius: 30px;
+	border: 2px solid #EBECF1;
+}
+
+#reg h1 {
+	position: relative;
+	left: 8%;
+}
+
+#reg form input{
+	position: relative;
+	top: 10%;
+	size: 80%;
+	border-radius: 4px;
+	border-width: 2px;
+	border-top-style: inset;
+	border-bottom-style: outset;
+	border-left-style: hidden;
+	border-right-style: hidden;
+	text-align: center;
+}
+
+#reg form label#normal{
+	position: relative;
+	left: 36%;
+}
+#reg form label#kurz{
+	position: relative;
+	left: 39%;
+}
+#reg form label#lang{
+	position: relative;
+	left: 21%;
+}
+
+#reg form input[type=submit] {
+	font-size: 110%;
+	size: 10%;
+	left: 10%;
+	width: 80%;
+	height: 2rem;
+}
+
+

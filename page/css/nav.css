@@ -1,0 +1,90 @@
+nav {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  border: 2px solid #EBECF1;
+  background-color: white;
+  border-radius: 30px;
+  animation: slideIN 1s ease-out;
+  font-family: 'Lexend Deca', sans-serif;
+}
+ 
+ol {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 0 30px;
+  list-style-type: none;
+}
+ol li:not(:last-child) {
+  margin-right: 40px;
+}
+ol li {
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 10px;
+  transition: background 0.2s;
+}
+ol li a {
+  color: #1da1f2;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+ol li ol {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  display: block;
+  margin: 12px -12px;
+  padding: 0;
+  background: #fd9d08;
+  border: 2px solid #F7C833;
+  border-right: 2px solid #F89329;
+  border-bottom: 2px solid #F89329;
+  border-radius: 5px;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+ol li ol li {
+  margin: -2px 0 0 -2px;
+  width: calc(100% - 20px);
+  line-height: 1.7;
+}
+ol li ol li a {
+  color: #1da1f2;
+}
+ol li:hover {
+  background: #ff3535;
+  border: 2px solid #F05749;
+  border-right: 2px solid #E02A21;
+  border-bottom: 2px solid #E02A21;
+}
+ol li:hover a {
+  color: #F9F8FD;
+}
+ol li:hover ol {
+  visibility: visible;
+  opacity: 1;
+  box-shadow: 0px 3px 5px 2px #EBECF1;
+}
+ol li:hover ol li a {
+  color: #F9F8FD;
+}
+ 
+@keyframes slideIN {
+  0% {
+    top: -50px;
+  }
+  40% {
+    top: 35px;
+  }
+  70% {
+    top: 10px;
+  }
+  100% {
+    top: 35px;
+  }
+}

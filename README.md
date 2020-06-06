@@ -15,6 +15,8 @@ A 67346c0a Projekt.
 - Home | TS3 Server Status in Sidebar
 - Changelog
 	- Showes the Changes on Our Server.
+- Devlog
+	- Showes the Changes on Our Server.
 - News
 	- Showes the News.
 - Requests (Only Useable for Registered users)

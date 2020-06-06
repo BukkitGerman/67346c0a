@@ -9,12 +9,23 @@ body{
 	margin: 9rem 1rem 4rem 1rem;
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
 	align-items: stretch;
 }
 
 .outer-item {
+	margin: 1rem;
 	display: flex;
 	flex-direction: column;
+	background-color: green;
+	max-width: 60%;
+}
+
+.inner-item {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
 }
 
 .footer-item {

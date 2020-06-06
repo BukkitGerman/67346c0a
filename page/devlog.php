@@ -30,8 +30,5 @@ if(isset($_SESSION["uid"])){
 		</div>
 	</div>
 </div>
-<div class="footer-item">
-		
-</div>
 </body>
 </html>

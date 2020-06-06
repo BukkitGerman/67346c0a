@@ -20,18 +20,16 @@ if(isset($_SESSION["uid"])){
 }
 ?>
 <body>
-<div class="content">
-	<div class="outer-item">
-		<div class="inner-item">
-			Et est ut proident deserunt consequat sunt ad ex sit reprehenderit nostrud laboris do consequat in nulla in amet proident ullamco exercitation ut occaecat id adipisicing est.
-		</div>
-		<div class="inner-item">
-			Non labore consequat excepteur elit id eiusmod nisi in ex labore officia voluptate pariatur dolore consequat qui laborum labore et et duis fugiat.
-		</div>
-	</div>
-</div>
-<div class="footer-item">
-		
+<div class="content-admin">
+	<?php
+	if(isset($_SESSION["uid"])){
+		if(getPermissionLevel($db, $_SESSION["uid"]) >= 2){
+
+		}else{
+			$content = "<h1 id='denied'>Access denied!</h1>";
+		}
+	}
+	?>
 </div>
 </body>
 </html>

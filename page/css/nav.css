@@ -10,10 +10,20 @@ nav {
   animation: slideIN 1s ease-out;
   font-family: 'Lexend Deca', sans-serif;
 }
- 
+
+#title {
+	margin-top: 0;
+	margin-left: -20px;
+}
+
+#antrag {
+	margin-left: -20px;
+}
+
 ol {
   position: relative;
   display: flex;
+  align-items: baseline;
   flex: 1 1 auto;
   margin: 0;
   padding: 0 30px;
@@ -62,6 +72,14 @@ ol li:hover {
   border-right: 2px solid #E02A21;
   border-bottom: 2px solid #E02A21;
 }
+
+ol li:hover#title {
+  background: #33cc33;
+  border: 2px solid #1f7a1f;
+  border-right: 2px solid #196619;
+  border-bottom: 2px solid #196619;
+}
+
 ol li:hover a {
   color: #F9F8FD;
 }

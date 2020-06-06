@@ -19,7 +19,8 @@ function getPermissionLevel($db, $usid){
 function showNavigation($db, $uid = false){
 
 	$out = "<nav class='menu'>
-	<ol>
+	<div class='title'>
+	<div><ol>
 		<li class='menu-item'><a href='/'>Home</a></li>
 		<li class='menu-item'><a href='news.php'>Neuigkeiten
 			<ol class='sub-menu'>
@@ -27,7 +28,8 @@ function showNavigation($db, $uid = false){
 				<li class='menu-item'><a href='devlog.php'>Devlog</a></li>
 			</ol>
 		</li>
-		<li class='menu-item'><a href='requests.php'>Antr&auml;ge</a>
+		<li id='title'><h1>Gamer4Life</h1></li>
+		<li class='menu-item' id='antrag'><a href='requests.php'>Antr&auml;ge</a>
 			<ol class='sub-menu'>
 				<li class='menu-item'><a href='entban.php'>Entban Antrag</a></li>
 				<li class='menu-item'><a href='channel.php'>Channel Antrag</a></li>
@@ -57,14 +59,9 @@ function showNavigation($db, $uid = false){
 					</li>";
 		}
 
-		$out .= "</ol></nav>";
+		$out .= "</ol></div></div></nav>";
 		
 		return $out;
-}
-
-
-function showSidebar(){
-
 }
 
 function showFooter(){

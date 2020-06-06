@@ -6,7 +6,7 @@ body{
 
 .content {
 	background-color: red;
-	margin: 6rem 1rem 4rem 1rem;
+	margin: 9rem 1rem 4rem 1rem;
 	display: flex;
 	flex-direction: row;
 	align-items: stretch;
@@ -17,7 +17,7 @@ body{
 	flex-direction: column;
 }
 
-.statusbar-item {
+.footer-item {
 	position: fixed;
 	left: 10%;
 	bottom: 1rem;
@@ -27,7 +27,7 @@ body{
 }
 
 .content-login {
-	margin: 6rem 1rem 4rem 1rem;
+	margin: 8rem 1rem 4rem 1rem;
 	display: flex;
 	align-items: center;
 	flex-direction: row;
@@ -75,7 +75,7 @@ body{
 }
 
 .content-reg {
-	margin: 6rem 1rem 4rem 1rem;
+	margin: 8rem 1rem 4rem 1rem;
 	display: flex;
 	align-items: center;
 	flex-direction: row;

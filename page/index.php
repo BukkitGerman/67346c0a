@@ -30,7 +30,7 @@ if(isset($_SESSION["uid"])){
 		</div>
 	</div>
 </div>
-<div class="statusbar-item">
+<div class="footer-item">
 		
 </div>
 </body>

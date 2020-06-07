@@ -50,6 +50,27 @@ if(isset($_SESSION['uid'])){
 
 		$changelog_message = "Changelog wurde erstellt!";
 	}
+
+	if(isset($_POST['changelog_id_bearbeiten']) && getPermissionLevel($db, $_SESSION['uid']) >= 2){
+		if(isset($_POST['changelog_head_edit'])){
+			$smt = $db->prepare("UPDATE changelog SET header = :header WHERE id = :id");
+			$smt->bindValue(':header', $_POST['changelog_head_edit']);
+			$smt->bindValue(':id', $_POST['changelog_id_bearbeiten']);
+			$smt->execute();
+		}
+		if(isset($_POST['changelog_body_edit'])){
+			$smt = $db->prepare("UPDATE changelog SET change = :body WHERE id = :id");
+			$smt->bindValue(':body', $_POST['changelog_body_edit']);
+			$smt->bindValue(':id', $_POST['changelog_id_bearbeiten']);
+			$smt->execute();
+		}
+	}
+
+	if(isset($_POST['changelog_id_loeschen']) && getPermissionLevel($db, $_SESSION['uid']) >= 2){
+		$smt = $db->prepare("DELETE FROM changelog WHERE id = :id");
+		$smt->bindValue(':id', $_POST['changelog_id_loeschen']);
+		$smt->execute();
+	}
 }
 
 
@@ -76,6 +97,7 @@ if(isset($_SESSION["uid"])){
 	if(isset($_SESSION["uid"])){
 		if(getPermissionLevel($db, $_SESSION["uid"]) >= 2){
 			$userinfo = getUserInformation($db);
+			$changelog_posts = getChangelogPosts($db);
 			$userperm = 
 
 			$content = "<div class='content-admin'>";
@@ -126,7 +148,7 @@ if(isset($_SESSION["uid"])){
 			$content .= "				<h4>Changelog hinzufügen</h4>";
 			$content .= "				<form method='POST'>";
 			$content .= "					<div><label>Überschrift</label>";
-			$content .= "							<input type='text' name='changelog_head'></div>";
+			$content .= "							<input type='text' name='changelog_head' required></div>";
 			$content .= "							<label>Changelog: <textarea id='text' name='changelog_body' cols='30' rows='4' required></textarea></label>";
 			$content .= "					<input type='submit' value='Erstellen'/>";
 			$content .= "				</form>";
@@ -135,17 +157,28 @@ if(isset($_SESSION["uid"])){
 			$content .= "			<div class='item-form'>";
 			$content .= "				<h4>Changelog bearbeiten</h4>";
 			$content .= "				<form method='POST'>";
-			$content .= "							";
-			$content .= "							";
-			$content .= "							";
+			$content .= "					<div><label>Changelog Auswählen</div>";
+			$content .= "							<select name='changelog_id_bearbeiten'>";
+      										while($dbsatz = $changelog_posts->fetchArray()){
+      											$content.= "<option value='".$dbsatz['id']."'>".$dbsatz['id']."</option>";
+      										}
+      		$content .= "						</label></select>";
+			$content .= "					<div><label>Überschrift</label>";
+			$content .= "							<input type='text' name='changelog_head_edit'></div>";
+			$content .= "							<label>Changelog: <textarea id='text' name='changelog_body_edit' cols='30' rows='4'></textarea></label>";
+			$content .= "					<input type='submit' value='&Auml;ndern'/>";
 			$content .= "				</form>";
 			$content .= "			</div>";
 			$content .= "			<div class='item-form'>";
 			$content .= "				<h4>Changelog entfernen</h4>";
 			$content .= "				<form method='POST'>";
-			$content .= "							";
-			$content .= "							";
-			$content .= "							";
+			$content .= "							<div><label>Changelog Auswählen</div>";
+			$content .= "							<select name='changelog_id_loeschen'>";
+      										while($dbsatz = $changelog_posts->fetchArray()){
+      											$content.= "<option value='".$dbsatz['id']."'>".$dbsatz['id']."</option>";
+      										}
+      		$content .= "						</label></select><br>";
+      		$content .= "					<input type='submit' value='L&ouml;schen'/>";
 			$content .= "				</form>";
 			$content .= "			</div>";
 			$content .= "		</div>";

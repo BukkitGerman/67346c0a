@@ -31,7 +31,6 @@
 }
 
 input[type=submit]{
-	margin-top: 50%;
 	padding: 0px;
 	position: relative;
 	left: 30%;
@@ -48,7 +47,7 @@ input[type=submit]:hover{
 
 .information {
 	color: #196619;
-	animation: info 5s ease-out;
+	animation: info 8s ease-out;
 	align-self: center;
 	opacity: 0%;
 }

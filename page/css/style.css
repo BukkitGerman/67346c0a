@@ -5,19 +5,21 @@ body{
 }
 
 .content {
-	background-color: red;
+	background-image: linear-gradient(75deg, white, #eeeeee, #d9d9d9, #eeeeee, white);
 	margin: 9rem 1rem 4rem 1rem;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: stretch;
+	border-style: inset none outset none;
+	border-radius: 8px;
+	border-width: 4px;
 }
 
 .outer-item {
 	margin: 1rem;
 	display: flex;
 	flex-direction: column;
-	background-color: green;
 	max-width: 60%;
 }
 
@@ -32,9 +34,13 @@ body{
 	position: fixed;
 	left: 10%;
 	bottom: 1rem;
-	background-color: blue;
+	background-image: #ccffcc;
 	width: 80%;
 	height: 4rem;
+
+	border-style: inset none outset none;
+	border-width: 4px;
+	border-radius: 8px;
 }
 
 .content-login {
@@ -139,6 +145,15 @@ body{
 	height: 2rem;
 }
 
+.post {
+	margin-bottom: 2rem;
+}
+
+#post_body {
+	border-style: inset none none none;
+	border-width: 2px;
+	border-radius: 4px;
+}
 
 .denied {
 	position: fixed;

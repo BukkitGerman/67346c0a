@@ -18,6 +18,19 @@ function getPermissionLevel($db, $usid = false){
 	}
 }
 
+function getChangelogPosts($db, $postID = false){
+	if($postID == false){
+		$result = $db->prepare("SELECT * FROM changelog");
+		$result = $result->execute();
+		return $result->fetchArray();
+	}elseif($postID != false){
+		$result = $db->prepare("SELECT * FROM changelog WHERE id = :id");
+		$result->bindValue(':id', $postID);
+		$result = $result->execute();
+		return $result->fetchArray();
+	}
+}
+
 
 function getUserinformation($db, $usid = false){
 
@@ -110,6 +123,9 @@ function showNavigation($db, $uid = false){
 }
 
 function showFooter(){
+	$output = "	<div class='footer'>
+
+				</div>";
 
 
 }

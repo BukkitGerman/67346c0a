@@ -24,6 +24,18 @@ if(isset($_SESSION["uid"])){
 	<div class="outer-item">
 		<?php
 			$posts = getChangelogPosts($db);
+			$text = "";
+			while ($dbsatz = $posts->fetchArray()) {
+				$text .= "<div class='inner-item'>
+						<div class='post'>
+						<h3>".$dbsatz['header']."</h3>
+						<div id='post_body'>
+						".$dbsatz['change']."
+						</div>
+						</div>
+						</div>";
+			}
+			echo $text;
 		?>
 	</div>
 </div>

@@ -22,7 +22,7 @@ function getChangelogPosts($db, $postID = false){
 	if($postID == false){
 		$result = $db->prepare("SELECT * FROM changelog");
 		$result = $result->execute();
-		return $result->fetchArray();
+		return $result;
 	}elseif($postID != false){
 		$result = $db->prepare("SELECT * FROM changelog WHERE id = :id");
 		$result->bindValue(':id', $postID);

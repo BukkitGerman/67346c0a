@@ -145,6 +145,15 @@ body{
 	height: 2rem;
 }
 
+.post {
+	margin-bottom: 2rem;
+}
+
+#post_body {
+	border-style: inset none none none;
+	border-width: 2px;
+	border-radius: 4px;
+}
 
 .denied {
 	position: fixed;

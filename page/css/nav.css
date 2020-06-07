@@ -1,5 +1,6 @@
 nav {
   position: absolute;
+  z-index: 100;
   top: 35px;
   left: 50%;
   transform: translateX(-50%);
@@ -64,6 +65,7 @@ ol li ol li {
   line-height: 1.7;
 }
 ol li ol li a {
+  z-index: 10;
   color: #1da1f2;
 }
 ol li:hover {
@@ -91,7 +93,13 @@ ol li:hover ol {
 ol li:hover ol li a {
   color: #F9F8FD;
 }
- 
+
+ol li#welcome {
+	font-size: 105%;
+	color: #00ff00;
+	white-space: nowrap;
+}
+
 @keyframes slideIN {
   0% {
     top: -50px;

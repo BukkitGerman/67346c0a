@@ -3,8 +3,11 @@
 
 
 
-function getPermissionLevel($db, $usid){
+function getPermissionLevel($db, $usid = false){
 
+	if($usid == false){
+		return $db->query("SELECT * FROM permissions");
+	}else{
 		$result = $db->prepare("SELECT permission FROM permissions WHERE uid = :usid");
 		$result->bindValue(':usid', $usid);
 		$result = $result->execute();
@@ -12,8 +15,49 @@ function getPermissionLevel($db, $usid){
 		$perm = $result['permission'];
 
 		return $perm;
+	}
 }
 
+
+function getUserinformation($db, $usid = false){
+
+	if($usid == false){
+		return $db->query("SELECT * FROM users");
+	}else{
+		$result = $db->prepare("SELECT * FROM users WHERE id = :usid");
+		$result->bindValue(':usid', $usid);
+		$result = $result->execute();
+		$result = $result->fetchArray();
+		
+		return $result;
+	}
+}
+
+
+function isUserDev($db, $usid){
+
+	$result = $db->prepare("SELECT developer FROM permissions WHERE uid = :usid");
+	$result->bindValue(':usid', $usid);
+	$result = $result->execute();
+	$result = $result->fetchArray();
+	$perm = $result['developer'];
+
+	if($perm >= 1){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function getUsername($db, $usid){
+	$result = $db->prepare("SELECT username FROM users WHERE id = :usid");
+	$result->bindValue(':usid', $usid);
+	$result = $result->execute();
+	$result = $result->fetchArray();
+	$usrname = $result['username'];
+
+	return $usrname;
+}
 
 
 function showNavigation($db, $uid = false){
@@ -40,6 +84,7 @@ function showNavigation($db, $uid = false){
 			if($permission >= 2){
 				$out .= "<li class='menu-item'><a href='profil.php'>Profil</a>
 							<ol class='sub-menu'>
+								<li class='menu-item' id='welcome'>Willkommen, ". getUsername($db, $uid) ."</li>
 								<li class='menu-item'><a href='admin.php'>Administration</a></li>
 								<li class='menu-item'><a href='logout.php'>Logout</a></li>
 							</ol>

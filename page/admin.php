@@ -11,6 +11,35 @@ if(isset($_SESSION['uid'])){
 		$smt->execute();
 		$info = "Berechtigung gesetzt!";
 	}
+
+	if(isset($_POST['reset_usid']) && getPermissionLevel($db, $_SESSION['uid']) >= 2){
+		$reset_uniq_id = uniqid("rspw");
+		$smt = $db->prepare("SELECT * FROM password_reset WHERE uid = :uid");
+		$smt->bindValue(':uid', $_POST['reset_usid']);
+		$smt = $smt->execute();
+		$smt = $smt->fetchArray();
+		var_dump($smt);
+		if($smt == false){
+			echo "Test";
+			$rs = $db->prepare("INSERT INTO password_reset (uid, key) VALUES (:uid, :key)");
+			$rs->bindValue(':uid', $_POST['reset_usid']);
+			$rs->bindValue(':key', $reset_uniq_id);
+			$rs->execute();
+		}else{
+			$rs = $db->prepare("UPDATE password_reset SET key = :key WHERE uid = :uid");
+			$rs->bindValue(':uid', $_POST['reset_usid']);
+			$rs->bindValue(':key', $reset_uniq_id);
+			$rs->execute();
+		}
+
+		$user = getUserInformation($db, $_POST['reset_usid']);
+
+		$link = "gamer4life.net/reset_passwort.php?key=".$reset_uniq_id;
+
+		$message = "Hier ist dein Reset link: " . $link;
+
+		mail($user['email'], "Passwort Reset", $message);
+	} 
 }
 
 
@@ -63,8 +92,14 @@ if(isset($_SESSION["uid"])){
 			$content .= "			<div class='item-form'>";
 			$content .= "				<h4>Passwort Reset</h4>";
 			$content .= "				<form method='POST'>";
-			$content .= "							";
-			$content .= "							";
+			$content .= "					<div id='space'><label>Nutzer: ";
+      		$content .= "						<select name='reset_usid'>";
+      										while($dbsatz = $userinfo->fetchArray()){
+      											$content.= "<option value='".$dbsatz['id']."'>".$dbsatz['id'].",  ".$dbsatz['username']." lv.".getPermissionLevel($db, $dbsatz['id'])."</option>";
+      										}
+      		$content .= "						</select>";
+      		$content .= "					</label></div>";
+			$content .= "					<input type='submit' value='&Auml;ndern'/>";
 			$content .= "							";
 			$content .= "				</form>";
 			$content .= "			</div>";

@@ -47,7 +47,7 @@ input[type=submit]:hover{
 
 .information {
 	color: #196619;
-	animation: info 5s ease-out;
+	animation: info 8s ease-out;
 	align-self: center;
 	opacity: 0%;
 }

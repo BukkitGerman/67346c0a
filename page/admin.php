@@ -40,6 +40,16 @@ if(isset($_SESSION['uid'])){
 
 		mail($user['email'], "Passwort Reset", $message);
 	} 
+
+	if(isset($_POST['changelog_head']) && isset($_POST['changelog_body']) && getPermissionLevel($db, $_SESSION['uid']) >= 2){
+		$smt = $db->prepare("INSERT INTO changelog (uid_creator, header, change) VALUES (:uid_creator, :header, :body)");
+		$smt->bindValue(':uid_creator', $_SESSION['uid']);
+		$smt->bindValue(':header', filter_var($_POST['changelog_head'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+		$smt->bindValue(':body', filter_var($_POST['changelog_body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+		$smt->execute();
+
+		$changelog_message = "Changelog wurde erstellt!";
+	}
 }
 
 
@@ -99,7 +109,7 @@ if(isset($_SESSION["uid"])){
       										}
       		$content .= "						</select>";
       		$content .= "					</label></div>";
-			$content .= "					<input type='submit' value='&Auml;ndern'/>";
+			$content .= "					<input type='submit' value='Zur&uuml;cksetzen'/>";
 			$content .= "							";
 			$content .= "				</form>";
 			$content .= "			</div>";
@@ -115,10 +125,12 @@ if(isset($_SESSION["uid"])){
 			$content .= "			<div class='item-form'>";
 			$content .= "				<h4>Changelog hinzufügen</h4>";
 			$content .= "				<form method='POST'>";
-			$content .= "							";
-			$content .= "							";
-			$content .= "							";
+			$content .= "					<div><label>Überschrift</label>";
+			$content .= "							<input type='text' name='changelog_head'></div>";
+			$content .= "							<label>Changelog: <textarea id='text' name='changelog_body' cols='30' rows='4' required></textarea></label>";
+			$content .= "					<input type='submit' value='Erstellen'/>";
 			$content .= "				</form>";
+			$content .= "				<div class='information'>".$changelog_message."</div>";
 			$content .= "			</div>";
 			$content .= "			<div class='item-form'>";
 			$content .= "				<h4>Changelog bearbeiten</h4>";

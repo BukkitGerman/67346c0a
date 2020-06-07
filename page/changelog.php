@@ -22,12 +22,9 @@ if(isset($_SESSION["uid"])){
 <body>
 <div class="content">
 	<div class="outer-item">
-		<div class="inner-item">
-			Et est ut proident deserunt consequat sunt ad ex sit reprehenderit nostrud laboris do consequat in nulla in amet proident ullamco exercitation ut occaecat id adipisicing est.
-		</div>
-		<div class="inner-item">
-			Non labore consequat excepteur elit id eiusmod nisi in ex labore officia voluptate pariatur dolore consequat qui laborum labore et et duis fugiat.
-		</div>
+		<?php
+			$posts = getChangelogPosts($db);
+		?>
 	</div>
 </div>
 </body>

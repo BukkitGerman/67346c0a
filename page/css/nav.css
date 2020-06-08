@@ -10,11 +10,13 @@ nav {
   border-radius: 30px;
   animation: slideIN 1s ease-out;
   font-family: 'Lexend Deca', sans-serif;
+  text-shadow: 0px 1px 1px black;
 }
 
 #title {
 	margin-top: 0;
 	margin-left: -20px;
+	text-shadow: 1px 1px 1px white;
 }
 
 #antrag {

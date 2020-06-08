@@ -30,18 +30,6 @@ body{
 	padding-right: 0.5rem;
 }
 
-.footer-item {
-	position: fixed;
-	left: 10%;
-	bottom: 1rem;
-	background-image: #ccffcc;
-	width: 80%;
-	height: 4rem;
-
-	border-style: inset none outset none;
-	border-width: 4px;
-	border-radius: 8px;
-}
 
 .content-login {
 	margin: 8rem 1rem 4rem 1rem;

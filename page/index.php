@@ -6,8 +6,9 @@ include 'main.php';
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="css/nav.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/nav.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
 	<title></title>
@@ -31,7 +32,16 @@ if(isset($_SESSION["uid"])){
 	</div>
 </div>
 <div class="footer-item">
-		
+	<ol>
+		<li class='footer'><a href='impressum.php'>Impressum</a></li>
+			<li class='footer copryright'>Copryright © 2020
+				<ol>
+					<li>Copryright © 2020 Gamer4life. All right reserved. Developed by BukkitGerman</li>
+				</ol>
+
+			</li>
+		<li class='footer'><a href='ts3server://gamer4life.net'>Teamspeak</a></li>
+	</ol>
 </div>
 </body>
 </html>

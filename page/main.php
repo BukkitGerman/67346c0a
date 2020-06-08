@@ -133,11 +133,9 @@ function showNavigation($db, $uid = false){
 }
 
 function showFooter(){
-	$output = "	<div class='footer'>
+	$output = "	";
 
-				</div>";
-
-
+	return $output;
 }
 
 

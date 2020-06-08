@@ -12,6 +12,14 @@ if(isset($_SESSION['uid'])){
 		$info = "Berechtigung gesetzt!";
 	}
 
+	if(isset($_POST['dev-usid']) && isset($_POST['level']) && getPermissionLevel($db, $_SESSION['uid']) >=2 && isUserDev($db, $_SESSION['uid'])){
+		$smt = $db->prepare("UPDATE permissions SET developer = :berechtigung WHERE uid = :uid");
+		$smt->bindValue(':berechtigung', $_POST['level']);
+		$smt->bindValue('uid', $_POST['usid']);
+		$smt->execute();
+		$info2 = "Berechtigung gesetzt!";
+	}
+
 	if(isset($_POST['reset_usid']) && getPermissionLevel($db, $_SESSION['uid']) >= 2){
 		$reset_uniq_id = uniqid("rspw");
 		$smt = $db->prepare("SELECT * FROM password_reset WHERE uid = :uid");
@@ -121,6 +129,25 @@ if(isset($_SESSION["uid"])){
 			$content .= "					<input type='submit' value='&Auml;ndern'/>";
 			$content .= "				</form>";
 			$content .= "			</div>";
+
+			if(isUserDev($db, $_SESSION['uid'])){
+				$content .= "			<div class='item-form'>";
+				$content .= "				<h4>Zugriffs Level Setzen</h4>";
+				$content .= "					<form method='POST'>";
+	      		$content .= "					<div id='space'><label>Nutzer: ";
+	      		$content .= "						<select name='dev-usid'>";
+	      										while($dbsatz = $userinfo->fetchArray()){
+	      											$content.= "<option value='".$dbsatz['id']."'>".$dbsatz['id'].",  ".$dbsatz['username']." lv.".getPermissionLevel($db, $dbsatz['id'])."</option>";
+	      										}
+	      		$content .= "						</select>";
+	      		$content .= "					</label></div>";
+	      		$content .= "					<div id='space'><label>Neues Level: <input type='number' name='level' min='0' max='1' required></label></div>";
+	      		$content .= "					<p class='information'>".$info2."</p>";
+				$content .= "					<input type='submit' value='&Auml;ndern'/>";
+				$content .= "				</form>";
+				$content .= "			</div>";
+			}
+
 			$content .= "			<div class='item-form'>";
 			$content .= "				<h4>Passwort Reset</h4>";
 			$content .= "				<form method='POST'>";

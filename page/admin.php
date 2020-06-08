@@ -137,7 +137,7 @@ if(isset($_SESSION["uid"])){
 	      		$content .= "					<div id='space'><label>Nutzer: ";
 	      		$content .= "						<select name='dev-usid'>";
 	      										while($dbsatz = $userinfo->fetchArray()){
-	      											$content.= "<option value='".$dbsatz['id']."'>".$dbsatz['id'].",  ".$dbsatz['username']." lv.".getPermissionLevel($db, $dbsatz['id'])."</option>";
+	      											$content.= "<option value='".$dbsatz['id']."'>".$dbsatz['id'].",  ".$dbsatz['username']." lv.".getPermissionLevel($db, $dbsatz['id'])." Dev: ".isUserDev($db, $dbsatz['id'])."</option>";
 	      										}
 	      		$content .= "						</select>";
 	      		$content .= "					</label></div>";

@@ -61,6 +61,7 @@ input[type=submit]:hover{
 	border-radius: 6px;
 	border-width: 4px;
 	border-color: darkgray;	
+	text-shadow: 1px 1px 1px white;
 }
 
 #space {

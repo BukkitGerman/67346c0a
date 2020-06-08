@@ -8,6 +8,7 @@ include 'main.php';
 <head>
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/nav.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
 	<title></title>
@@ -148,5 +149,8 @@ if($Showform){
 ?>
 </div>
 </div>
+<?php
+	echo showFooter();
+?>
 </body>
 </html>

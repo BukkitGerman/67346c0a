@@ -31,17 +31,8 @@ if(isset($_SESSION["uid"])){
 		</div>
 	</div>
 </div>
-<div class="footer-item">
-	<ol>
-		<li class='footer'><a href='impressum.php'>Impressum</a></li>
-			<li class='footer copryright'>Copryright © 2020
-				<ol>
-					<li>Copryright © 2020 Gamer4life. All right reserved. Developed by BukkitGerman</li>
-				</ol>
-
-			</li>
-		<li class='footer'><a href='ts3server://gamer4life.net'>Teamspeak</a></li>
-	</ol>
-</div>
+<?php
+	echo showFooter();
+?>
 </body>
 </html>

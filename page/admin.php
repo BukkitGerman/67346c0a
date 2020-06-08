@@ -139,6 +139,11 @@ if(isset($_SESSION["uid"])){
 			$content .= "	</div>";
 
 
+
+
+
+
+
 			$content .= "	<div class='item changelog' id='right'>";
 			$content .= "		<div class='item-head'>";
 			$content .= "			<h3>Changelog Management</h3>";
@@ -149,7 +154,7 @@ if(isset($_SESSION["uid"])){
 			$content .= "				<form method='POST'>";
 			$content .= "					<div><label>Überschrift</label>";
 			$content .= "							<input type='text' name='changelog_head' required></div>";
-			$content .= "							<label>Changelog: <textarea id='text' name='changelog_body' cols='30' rows='4' required></textarea></label>";
+			$content .= "							<label>Changelog: <br><textarea id='text' name='changelog_body' cols='30' rows='4' required></textarea></label>";
 			$content .= "					<input type='submit' value='Erstellen'/>";
 			$content .= "				</form>";
 			$content .= "				<div class='information'>".$changelog_message."</div>";
@@ -165,7 +170,7 @@ if(isset($_SESSION["uid"])){
       		$content .= "						</label></select>";
 			$content .= "					<div><label>Überschrift</label>";
 			$content .= "							<input type='text' name='changelog_head_edit'></div>";
-			$content .= "							<label>Changelog: <textarea id='text' name='changelog_body_edit' cols='30' rows='4'></textarea></label>";
+			$content .= "							<label>Changelog: <br><textarea id='text' name='changelog_body_edit' cols='30' rows='4'></textarea></label>";
 			$content .= "					<input type='submit' value='&Auml;ndern'/>";
 			$content .= "				</form>";
 			$content .= "			</div>";

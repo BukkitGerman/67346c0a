@@ -105,6 +105,7 @@ function showNavigation($db, $uid = false){
 			}else{
 				$out .= "<li class='menu-item'><a href='profil.php'>Profil</a>
 							<ol class='sub-menu'>
+								<li class='menu-item' id='welcome'>Willkommen, ". getUsername($db, $uid) ."</li>
 								<li class='menu-item'><a href='logout.php'>Logout</a></li>
 							</ol>
 						</li>";

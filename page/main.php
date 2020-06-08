@@ -20,7 +20,7 @@ function getPermissionLevel($db, $usid = false){
 
 function getChangelogPosts($db, $postID = false){
 	if($postID == false){
-		$result = $db->prepare("SELECT * FROM changelog");
+		$result = $db->prepare("SELECT * FROM changelog ORDER BY id DESC");
 		$result = $result->execute();
 		return $result;
 	}elseif($postID != false){

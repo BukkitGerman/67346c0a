@@ -132,7 +132,7 @@ if(isset($_SESSION["uid"])){
 
 			if(isUserDev($db, $_SESSION['uid'])){
 				$content .= "			<div class='item-form'>";
-				$content .= "				<h4>Zugriffs Level Setzen</h4>";
+				$content .= "				<h4>Developer Level Setzen</h4>";
 				$content .= "					<form method='POST'>";
 	      		$content .= "					<div id='space'><label>Nutzer: ";
 	      		$content .= "						<select name='dev-usid'>";

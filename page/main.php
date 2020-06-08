@@ -31,6 +31,15 @@ function getChangelogPosts($db, $postID = false){
 	}
 }
 
+function getDebugStatus($db, $usid){
+		$result = $db->prepare("SELECT debug FROM dev_settings WHERE uid = :usid");
+		$result->bindValue(':usid', $usid);
+		$result = $result->execute();
+		$result = $result->fetchArray();
+		
+		return $result['debug'];
+}
+
 
 function getUserinformation($db, $usid = false){
 

@@ -4,6 +4,13 @@ $db = new SQLite3("../database/database.db");
 include 'main.php';
 
 if(isset($_SESSION['uid'])){
+
+
+	if(isUserDev($db, $_SESSION['uid'])){
+		$debug_status = getDebugStatus($db, $_SESSION['uid']);
+	}
+
+
 	if(isset($_POST['usid']) && isset($_POST['level']) && getPermissionLevel($db, $_SESSION['uid']) >=2){
 		$smt = $db->prepare("UPDATE permissions SET permission = :berechtigung WHERE uid = :uid");
 		$smt->bindValue(':berechtigung', $_POST['level']);
@@ -12,10 +19,10 @@ if(isset($_SESSION['uid'])){
 		$info = "Berechtigung gesetzt!";
 	}
 
-	if(isset($_POST['dev-usid']) && isset($_POST['level']) && getPermissionLevel($db, $_SESSION['uid']) >=2 && isUserDev($db, $_SESSION['uid'])){
-		$smt = $db->prepare("UPDATE permissions SET developer = :berechtigung WHERE uid = :uid");
-		$smt->bindValue(':berechtigung', $_POST['level']);
-		$smt->bindValue('uid', $_POST['usid']);
+	if(isset($_POST['dev-usid']) && isset($_POST['dev-level']) && isUserDev($db, $_SESSION['uid'])){
+		$smt = $db->prepare("UPDATE permissions SET developer = :dev WHERE uid = :uid");
+		$smt->bindValue(':dev', $_POST['dev-level']);
+		$smt->bindValue('uid', $_POST['dev-usid']);
 		$smt->execute();
 		$info2 = "Berechtigung gesetzt!";
 	}
@@ -26,7 +33,6 @@ if(isset($_SESSION['uid'])){
 		$smt->bindValue(':uid', $_POST['reset_usid']);
 		$smt = $smt->execute();
 		$smt = $smt->fetchArray();
-		var_dump($smt);
 		if($smt == false){
 			echo "Test";
 			$rs = $db->prepare("INSERT INTO password_reset (uid, key) VALUES (:uid, :key)");
@@ -79,6 +85,16 @@ if(isset($_SESSION['uid'])){
 		$smt->bindValue(':id', $_POST['changelog_id_loeschen']);
 		$smt->execute();
 	}
+
+
+	if(isset($_POST['debug_user']) && isset($_POST['debug'])&& isUserDev($db, $_SESSION['uid'])){
+
+
+			$smt = $db->prepare("UPDATE dev_settings SET debug = :debug WHERE uid = :uid");
+			$smt->bindValue(':debug', $_POST['debug']);
+			$smt->bindValue(':uid', $_POST['debug_user']);
+			$smt->execute();
+	}
 }
 
 
@@ -89,6 +105,7 @@ if(isset($_SESSION['uid'])){
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/admin.css">
 	<link rel="stylesheet" href="css/nav.css">
+	<link rel="stylesheet" href="css/switch.css">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
 	<title></title>
@@ -141,8 +158,27 @@ if(isset($_SESSION["uid"])){
 	      										}
 	      		$content .= "						</select>";
 	      		$content .= "					</label></div>";
-	      		$content .= "					<div id='space'><label>Neues Level: <input type='number' name='level' min='0' max='1' required></label></div>";
-	      		$content .= "					<p class='information'>".$info2."</p>";
+	      		$content .= "					<div id='space'><label>Neues Level: <input type='number' name='dev-level' min='0' max='1' required></label></div>";
+				$content .= "					<input type='submit' value='&Auml;ndern'/>";
+				$content .= "				</form>";
+				$content .= "					<p class='information'>".$info2."</p>";
+				$content .= "			</div>";
+
+
+				$content .= "			<div class='item-form'>";
+				$content .= "				<h4>Debug Settings</h4>";
+				$content .= "				<form method='POST'>";
+				$content .= "					<div id='space'><label>Nutzer: ";
+	      		$content .= "						<select name='debug_user'>";
+	      										while($dbsatz = $userinfo->fetchArray()){
+	      											if(isUserDev($db, $dbsatz['id'])){
+	      											$content.= "<option value='".$dbsatz['id']."'>".$dbsatz['id'].",  ".$dbsatz['username']." lv.".getPermissionLevel($db, $dbsatz['id']).", Debug: ".getDebugStatus($db, $dbsatz['id'])."</option>";
+	      											}
+	      										}
+	      		$content .= "						</select>";
+	      		$content .= "					</label></div>";
+	      		$content .= "					<div id='space'><label>Debug: <input type='number' name='debug' min='0' max='1' required></label></div>";
+	      		$content .= "					<p class='information'>".$info3."</p>";
 				$content .= "					<input type='submit' value='&Auml;ndern'/>";
 				$content .= "				</form>";
 				$content .= "			</div>";
@@ -247,6 +283,15 @@ if(isset($_SESSION["uid"])){
 				$content .= "							";
 				$content .= "				</form>";
 				$content .= "			</div>";
+				$content .= "		</div>";
+				$content .= "	</div>";
+
+
+				$content .= "	<div class='item devlog' id='left'>";
+				$content .= "		<div class='item-head'>";
+				$content .= "			<h3>Devlog Management</h3>";
+				$content .= "		</div>";
+				$content .= "		<div class='item-body'>";
 				$content .= "		</div>";
 				$content .= "	</div>";
 			}

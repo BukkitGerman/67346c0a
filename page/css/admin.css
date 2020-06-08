@@ -40,6 +40,24 @@ input[type=submit]{
 	border-style: inset none outset none;
 }
 
+div.status {
+	position: relative;
+	width: 30%;
+	border-radius: 4px;
+	color: white;
+	padding: 4px;
+	margin: 2px;
+	text-align: center;
+}
+
+div.an {
+	background-color: green;
+}
+
+div.aus {
+	background-color: red;
+}
+
 input[type=submit]:hover{
 	background-color: #248f24;
 	color: #ffffff;

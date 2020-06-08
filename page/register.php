@@ -105,6 +105,10 @@ if(isset($_GET['register'])){
 			$smt->bindValue('dev', 0);
 			$smt->execute();
 
+			$rs = $db->prepare("INSERT INTO dev_settings (uid) VALUES (:uid)");
+			$rs->bindValue(':uid', $uid);
+			$rs = $rs->execute();
+
 			if($result){
 				echo "Registrierung erfolgreich! <a href='login.php'>Zum Login</a>";
 				$Showform = false;

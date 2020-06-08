@@ -94,7 +94,7 @@ function showNavigation($db, $uid = false){
 				<li class='menu-item'><a href='devlog.php'>Devlog</a></li>
 			</ol>
 		</li>
-		<li id='title'><h1>Gamer4Life</h1></li>
+		<li id='title'><h1><a href='/'>Gamer4Life</a></h1></li>
 		<li class='menu-item' id='antrag'><a href='requests.php'>Antr&auml;ge</a>
 			<ol class='sub-menu'>
 				<li class='menu-item'><a href='entban.php'>Entban Antrag</a></li>

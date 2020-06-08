@@ -68,9 +68,9 @@
 .footer-item ol li ol {
   visibility: hidden;
   opacity: 0;
-  position: absolute;
+  position: fixed;
   bottom: 2rem;
-  left: 25%;
+  top: 25%;
   display: block;
   margin: 12px -12px;
   padding: 0;

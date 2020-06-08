@@ -23,6 +23,7 @@ nav {
 	margin-left: -20px;
 }
 
+
 nav ol {
   position: relative;
   display: flex;
@@ -43,6 +44,13 @@ nav ol li {
 }
 nav ol li a {
   color: #1da1f2;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+nav ol li h1 a {
+  color: black;
   text-decoration: none;
   text-transform: uppercase;
   transition: color 0.2s;
@@ -77,7 +85,7 @@ nav ol li:hover {
   border-bottom: 2px solid #E02A21;
 }
 
-nav ol li:hover#title {
+nav ol li#title {
   background: #33cc33;
   border: 2px solid #1f7a1f;
   border-right: 2px solid #196619;
@@ -101,6 +109,7 @@ nav ol li#welcome {
 	color: #00ff00;
 	white-space: nowrap;
 }
+ 
 
 @keyframes slideIN {
   0% {

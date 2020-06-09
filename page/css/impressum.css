@@ -2,11 +2,11 @@ body{
 	margin: 0px;
 	padding: 0px;
 	font-family: 'Roboto Mono', monospace;
-	background-color: #BDBDBD;
+	background-color: #D8D8D8;
 }
 
 .content {
-	background-color: #BDBDBD;
+	background-color: #D8D8D8;
 	margin: 9rem 1rem 4rem 1rem;
 	display: flex;
 	flex-direction: row;

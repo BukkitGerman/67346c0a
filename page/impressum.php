@@ -44,7 +44,6 @@ Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten d
 		</div>
 	</div>
 </div>
-<canvas></canvas>
 <?php
 	echo showFooter();
 ?>

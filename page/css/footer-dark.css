@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   z-index: 100;
-  background-color: #D8D8D8;
+  background-color: #2f3640;
   animation: slideINfooter 1s ease-out;
   font-family: 'Lexend Deca', sans-serif;
   text-shadow: 0px 1px 1px black;
@@ -38,7 +38,7 @@
   border-radius: 5px;
   padding: 10px;
   transition: background 0.2s;
-  color: black;
+  color: white;
 }
 .footer-item ol li a {
   color: #1da1f2;

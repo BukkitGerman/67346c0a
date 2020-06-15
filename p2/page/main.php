@@ -2,7 +2,7 @@
 
 function getPermission($db, $userid)
 {
-	$result = $db->prepare("SELECT permission FROM permissions WHERE id = :usid");
+	$result = $db->prepare("SELECT permission FROM permissions WHERE uid = :usid");
 	$result->bindValue(':usid', $userid);
 	$result = $result->execute();
 	$result = $result->fetchArray();
@@ -11,7 +11,7 @@ function getPermission($db, $userid)
 
 function isDeveloper($db, $userid)
 {
-	$result = $db->prepare("SELECT developer FROM permissions WHERE id = :usid");
+	$result = $db->prepare("SELECT developer FROM permissions WHERE uid = :usid");
 	$result->bindValue(':usid', $userid);
 	$result = $result->execute();
 	$result = $result->fetchArray();
@@ -24,7 +24,7 @@ function isDeveloper($db, $userid)
 
 function isAdmin($db, $userid)
 {
-	$result = $db->prepare("SELECT permission FROM permissions WHERE id = :usid");
+	$result = $db->prepare("SELECT permission FROM permissions WHERE uid = :usid");
 	$result->bindValue(':usid', $userid);
 	$result = $result->execute();
 	$result = $result->fetchArray();
@@ -37,7 +37,7 @@ function isAdmin($db, $userid)
 
 function isModerator($db, $userid)
 {
-	$result = $db->prepare("SELECT permission FROM permissions WHERE id = :usid");
+	$result = $db->prepare("SELECT permission FROM permissions WHERE uid = :usid");
 	$result->bindValue(':usid', $userid);
 	$result = $result->execute();
 	$result = $result->fetchArray();
@@ -50,7 +50,7 @@ function isModerator($db, $userid)
 
 function isSupporter($db, $userid)
 {
-	$result = $db->prepare("SELECT permission FROM permissions WHERE id = :usid");
+	$result = $db->prepare("SELECT permission FROM permissions WHERE uid = :usid");
 	$result->bindValue(':usid', $userid);
 	$result = $result->execute();
 	$result = $result->fetchArray();
@@ -63,7 +63,7 @@ function isSupporter($db, $userid)
 
 function getUsername($db, $uid)
 {
-	$result = $db->prepare("SELECT username FROM users WHERE id = :usid");
+	$result = $db->prepare("SELECT username FROM users WHERE uid = :usid");
 	$result->bindValue(':usid', $uid);
 	$result = $result->execute();
 	$result = $result->fetchArray();
@@ -145,7 +145,15 @@ function getFooter(){
 
 function isDebugAktive($db, $userid)
 {
-
+	$result = $db->prepare("SELECT debug FROM dev_settings WHERE uid = :usid");
+	$result->bindValue(':usid', $userid);
+	$result = $result->execute();
+	$result = $result->fetchArray();
+	if($result['debug'] >= 1){
+		return true;
+	}else{
+		return false;
+	}
 }
 
 ?>

@@ -2,22 +2,50 @@
 
 function getPermission($db, $userid)
 {
-
+	$result = $db->prepare("SELECT permission FROM permissions WHERE id = :usid");
+	$result->bindValue(':usid', $userid);
+	$result = $result->execute();
+	$result = $result->fetchArray();
+	return $result['permission'];
 }
 
 function isDeveloper($db, $userid)
 {
-	
+	$result = $db->prepare("SELECT developer FROM permissions WHERE id = :usid");
+	$result->bindValue(':usid', $userid);
+	$result = $result->execute();
+	$result = $result->fetchArray();
+	if($result['developer'] >= 3){
+		return true;
+	}else{
+		return false;
+	}
 }
 
 function isAdmin($db, $userid)
 {
-	
+	$result = $db->prepare("SELECT permission FROM permissions WHERE id = :usid");
+	$result->bindValue(':usid', $userid);
+	$result = $result->execute();
+	$result = $result->fetchArray();
+	if($result['permission'] >= 4){
+		return true;
+	}else{
+		return false;
+	}
 }
 
 function isModerator($db, $userid)
 {
-	
+	$result = $db->prepare("SELECT permission FROM permissions WHERE id = :usid");
+	$result->bindValue(':usid', $userid);
+	$result = $result->execute();
+	$result = $result->fetchArray();
+	if($result['permission'] >= 3){
+		return true;
+	}else{
+		return false;
+	}
 }
 
 function isSupporter($db, $userid)
@@ -66,8 +94,7 @@ function getNavigationbar($db, $uid = false)
 			</ul>
 		</li>";
 		if($uid != false){
-			$permission = getPermission($db, $uid);
-			if($permission >= 5){
+			if(isAdmin($db, $uid)){
 				$result .= "<li><a href='profil.php'>Profil</a>
 							<ul>
 								<li id='welcome'>Willkommen, ". getUsername($db, $uid) ."</li>

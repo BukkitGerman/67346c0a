@@ -27,11 +27,12 @@ function getUsername($db, $uid)
 
 function getNavigationbar($db, $uid = false)
 {
-	$result = "<header>
-	
+	$result = "<header id='particles-js'>
+	<script type='text/javascript' src='js/particles.js'></script>
+	<script type='text/javascript' src='js/app.js'></script>
 	<nav id='normal'>
 	<ul>
-		<li id='titelli'><h1 id='titel'><a href='/'>Gamer4life</a></h1></li>
+		<li class='titelli' id='particles-js'><h1 id='titel'><a href='/'>Gamer4life</a></h1></li>
 		<li><a href='/'>Home</a></li>
 		<li><a href='news.php'>Neuigkeiten</a>
 			<ul>

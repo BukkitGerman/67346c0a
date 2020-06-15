@@ -67,6 +67,25 @@ header nav#normal ul li.titelli h1#titel a{
   	font-family: 'Lexend Deca', sans-serif;
 }
 
+header nav#normal ul li#welcome {
+	display: inline-block;
+	padding: 2.17rem;
+	min-width: 12rem;
+	text-align: center;
+	font-size: 2rem;
+	color: #fff;
+	margin: 0 1px 0 0;
+	text-decoration: none;
+	background: #44bd32;
+	font-weight: 300;
+	transition: all 300ms;
+  	font-family: 'Lexend Deca', sans-serif;
+}
+
+header nav#normal ul li#welcome:hover {
+	background: #4cd137;
+}
+
 header nav#normal ul li a {
 	display: inline-block;
 	padding: 2.17rem;
@@ -89,10 +108,12 @@ header nav#normal ul li:hover > a {
 header nav#normal ul li ul {
 	overflow: hidden;
 	position: absolute;
+	display: flex;
+	flex-direction: column;
 	top: 100%;
 	left: 0;
 	width: 100%;
-	transition: 300ms all;
+	transition: 900ms all;
 	max-height: 0;
 }
 
@@ -101,6 +122,24 @@ header nav#normal ul li ul li {
 }
 
 header nav#normal ul li:hover > ul {
-	max-height: 1000px;
+	max-height: 1500px;
 }
+
+
+
+
+.content-login {
+	margin: 7rem 0 7rem 0;
+	font-size: 1.5rem;
+}
+
+.content-reg {
+	margin: 7rem 0 7rem 0;
+	font-size: 1.5rem;
+}
+
+
+
+
+
 

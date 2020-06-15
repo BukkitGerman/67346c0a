@@ -22,7 +22,13 @@ function isSupporter($db, $userid)
 
 function getUsername($db, $uid)
 {
+	$result = $db->prepare("SELECT username FROM users WHERE id = :usid");
+	$result->bindValue(':usid', $uid);
+	$result = $result->execute();
+	$result = $result->fetchArray();
+	$usrname = $result['username'];
 
+	return $usrname;
 }
 
 function getNavigationbar($db, $uid = false)

@@ -143,7 +143,7 @@ function getFooter(){
 	return $result;
 }
 
-function isDebugAktive($db, $userid)
+function isDebugActive($db, $userid)
 {
 	$result = $db->prepare("SELECT debug FROM dev_settings WHERE uid = :usid");
 	$result->bindValue(':usid', $userid);

@@ -38,7 +38,7 @@ function getNavigationbar($db, $uid = false)
 	<script type='text/javascript' src='js/app.js'></script>
 	<nav id='normal'>
 	<ul>
-		<li class='titelli' id='particles-js'><h1 id='titel'><a href='/'>Gamer4life</a></h1></li>
+		<li id='titelli'><h1 id='titel'><a href='/'>Gamer4life</a></h1></li>
 		<li><a href='/'>Home</a></li>
 		<li><a href='news.php'>Neuigkeiten</a>
 			<ul>

@@ -5,6 +5,11 @@ function getPermission($db, $userid)
 
 }
 
+function isDeveloper($db, $userid)
+{
+	
+}
+
 function isAdmin($db, $userid)
 {
 	
@@ -17,7 +22,15 @@ function isModerator($db, $userid)
 
 function isSupporter($db, $userid)
 {
-	
+	$result = $db->prepare("SELECT permission FROM permissions WHERE id = :usid");
+	$result->bindValue(':usid', $userid);
+	$result = $result->execute();
+	$result = $result->fetchArray();
+	if($result['permission'] >= 2){
+		return true;
+	}else{
+		return false;
+	}
 }
 
 function getUsername($db, $uid)

@@ -97,7 +97,9 @@ footer .footer-item ul li ul:hover {
 }
 
 footer .footer-item ul li ul li {
-	border-bottom: 1px solid #a12c12;
+	border-style: inset none outset none;
+  	border-width: 1px;
+  	border-radius: 4px;
 }
 
 footer .footer-item ul li:hover > ul {

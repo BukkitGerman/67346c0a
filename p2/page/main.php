@@ -15,7 +15,7 @@ function isDeveloper($db, $userid)
 	$result->bindValue(':usid', $userid);
 	$result = $result->execute();
 	$result = $result->fetchArray();
-	if($result['developer'] >= 3){
+	if($result['developer'] >= 1){
 		return true;
 	}else{
 		return false;
@@ -99,7 +99,13 @@ function getNavigationbar($db, $uid = false)
 							<ul>
 								<li id='welcome'>Willkommen, ". getUsername($db, $uid) ."</li>
 								<li><a href='admin.php'>Administration</a></li>
-								<li><a href='logout.php'>Logout</a></li>
+								";
+					if(isDeveloper($db, $uid)){
+					 $result .= "<li><a href='stats.php'>Statistiken</a></li>";
+					}
+
+
+				$result .="		<li><a href='logout.php'>Logout</a></li>
 							</ul>
 						</li>";
 			}else{

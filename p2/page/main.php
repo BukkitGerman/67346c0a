@@ -61,10 +61,10 @@ function isSupporter($db, $userid)
 	}
 }
 
-function getUsername($db, $uid)
+function getUsername($db, $userid)
 {
-	$result = $db->prepare("SELECT username FROM users WHERE uid = :usid");
-	$result->bindValue(':usid', $uid);
+	$result = $db->prepare("SELECT username FROM users WHERE id = :usid");
+	$result->bindValue(':usid', $userid);
 	$result = $result->execute();
 	$result = $result->fetchArray();
 	$usrname = $result['username'];

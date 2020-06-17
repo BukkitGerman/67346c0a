@@ -114,7 +114,7 @@ header nav#normal ul li ul {
 	top: 100%;
 	left: 0;
 	width: 100%;
-	transition: 900ms all;
+	transition: 250ms all;
 	max-height: 0;
 }
 

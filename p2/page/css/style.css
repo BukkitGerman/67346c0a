@@ -7,6 +7,7 @@ body, html {
 
 header {
 	background: #2f3640;
+	z-index: 100;
 	position: fixed;
 	display: flex;
 	flex-direction: row;
@@ -20,12 +21,14 @@ header {
 }
 
 header nav#normal {
+	z-index: 100;
 	display: inline-block;
 	align-self: flex-end;
 	width: 100%;
 }
 
 header nav#normal ul {
+	z-index: 100;
 	margin: 0;
 	padding: 0;
 	max-width: 100%;
@@ -37,6 +40,7 @@ header nav#normal ul {
 }
 
 header nav#normal ul li {
+	z-index: 100;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -45,6 +49,7 @@ header nav#normal ul li {
 }
 
 header nav#normal ul li#titelli h1#titel {
+	z-index: 100;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -54,6 +59,7 @@ header nav#normal ul li#titelli h1#titel {
 }
 
 header nav#normal ul li#titelli h1#titel a{
+	z-index: 100;
 	display: inline-block;
 	padding: 2.17rem;
 	min-width: 12rem;
@@ -69,6 +75,7 @@ header nav#normal ul li#titelli h1#titel a{
 }
 
 header nav#normal ul li#welcome {
+	z-index: 100;
 	display: inline-block;
 	padding: 2.17rem;
 	min-width: 12rem;
@@ -88,6 +95,7 @@ header nav#normal ul li#welcome:hover {
 }
 
 header nav#normal ul li a {
+	z-index: 100;
 	display: inline-block;
 	padding: 2.17rem;
 	min-width: 12rem;
@@ -107,6 +115,7 @@ header nav#normal ul li:hover > a {
 }
 
 header nav#normal ul li ul {
+	z-index: 100;
 	overflow: hidden;
 	position: absolute;
 	display: flex;
@@ -119,6 +128,7 @@ header nav#normal ul li ul {
 }
 
 header nav#normal ul li ul li {
+	z-index: 100;
 	border-bottom: 1px solid #a12c12;
 }
 

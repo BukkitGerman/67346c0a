@@ -162,4 +162,43 @@ function isDebugActive($db, $userid)
 	}
 }
 
+function getDatasetFromTable($db, $table ,$id = false){
+	if($post_id == false){
+		$result = $db->prepare("SELECT * FROM :table ORDER BY DESC");
+		$result->bindValue(':table', $table);
+		$result = $result->execute();
+		$result = $result->fetchArray();
+
+		return $result;
+	}else{
+		$result = $db->prepare("SELECT * FROM :table WHERE id = id ORDER BY DESC");
+		$result->bindValue(':table', $table);
+		$result->bindValue(':id', $id);
+		$result = $result->execute();
+		$result = $result->fetchArray();
+		return $result;
+	}
+}
+
+
+function getContentFromTemplate($name){
+
+	$url = "../templates/".$name.".html";
+
+	$handle = fopen($url, "r");
+	if($handle){
+		while (($buffer = fgets($handle, 4096)) !== false) {
+			$result .= $buffer;
+		}
+	}
+
+	if(!feof($handle)){
+		$result = "Error!";
+	}
+
+	fclose($handle);
+
+	return $result;
+	}
+
 ?>

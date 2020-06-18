@@ -16,7 +16,7 @@ include 'main.php';
 
 
 
-$uebersicht = getContentFromTemplate("uebersicht", "php");
+$uebersicht = getContentFromTemplate("uebersicht", "html");
 $userinfo = getUserinformation($db);
 if(isset($_GET['sb'])){
 	if($_GET['sb'] == "uebersicht"){

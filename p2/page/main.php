@@ -72,6 +72,20 @@ function getUsername($db, $userid)
 	return $usrname;
 }
 
+function getUserinformation($db, $usid = false){
+
+	if($usid == false){
+		return $db->query("SELECT * FROM users");
+	}else{
+		$result = $db->prepare("SELECT * FROM users WHERE id = :usid");
+		$result->bindValue(':usid', $usid);
+		$result = $result->execute();
+		$result = $result->fetchArray();
+		
+		return $result;
+	}
+}
+
 function getNavigationbar($db, $uid = false)
 {
 	$result = "<header id='particles-js'>
@@ -181,9 +195,9 @@ function getDatasetFromTable($db, $table ,$id = false){
 }
 
 
-function getContentFromTemplate($name){
+function getContentFromTemplate($name, $endung){
 
-	$url = "../templates/".$name.".html";
+	$url = "../templates/".$name.".".$endung;
 
 	$handle = fopen($url, "r");
 	if($handle){

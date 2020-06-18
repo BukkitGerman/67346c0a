@@ -51,12 +51,53 @@ div.sidebar ul li:hover > a {
 }
 
 .content-admin {
-	min-width: 100vw;
+	padding: 3rem;
+	min-width: 55vw;
 	font-size: 2rem;
-	background: #7ed6df;
+	background: transparent;
+	color: #fff;
+	text-shadow: 1px 1px 2px #000; 
+}
+
+.information {
+	color: #196619;
+	animation: info 8s ease-out;
+	align-self: center;
+	opacity: 0%;
+}
+
+.noPermission {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	width: 50rem;
+	height: 30rem;
+	background: #ff3300;
+	border: 1px #f00000 solid;
+	border-radius: 8px;
+	text-align: center;
+
+	font-size: 4rem;
+	font-weight: bold;
+	color: #fff;
 }
 
 .outer-form {
 
 }
+
+@keyframes info {
+  0% {
+    opacity: 100%;
+  }
+
+  100% {
+  	opacity: 0%;
+  }
+}
+
 

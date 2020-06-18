@@ -47,7 +47,12 @@ div.sidebar ul li a{
 }
 
 .content-admin {
+	min-width: 100vw;
 	font-size: 2rem;
 	background: #7ed6df;
+}
+
+.outer-form {
+
 }
 

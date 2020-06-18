@@ -12,7 +12,13 @@ if(isset($_GET['sb'])){
 	if($_GET['sb'] == "uebersicht"){
 		$content = $uebersicht;
 	}elseif ($_GET['sb'] == "nutzer") {
-		$content = "Nutzer";
+		$content = "
+		<div class='outer-form'>
+			<form method='POST'>
+				<h3>Berechtigungs Level &Auml;ndern</h3>
+
+			</form>
+		</div>";
 	}
 }else{
 	$content = $uebersicht;

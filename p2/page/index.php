@@ -3,6 +3,7 @@ session_start();
 $db = new SQLite3("../database/database.db");
 
 include 'main.php';
+include 'ts3.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,9 @@ if(isset($_SESSION['uid']))
  	echo getNavigationbar($db);
 }
 ?>
-
+<div class="content">
+	
+</div>
 
 
 

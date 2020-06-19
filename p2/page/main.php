@@ -1,5 +1,7 @@
 <?php
 
+require_once("../libraries/TeamSpeak3/TeamSpeak3.php");
+
 function getPermission($db, $userid)
 {
 	$result = $db->prepare("SELECT permission FROM permissions WHERE uid = :usid");
@@ -213,6 +215,9 @@ function getContentFromTemplate($name, $endung){
 	fclose($handle);
 
 	return $result;
-	}
+}
+
+
+
 
 ?>

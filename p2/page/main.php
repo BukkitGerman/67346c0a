@@ -196,6 +196,19 @@ function getDatasetFromTable($db, $table ,$id = false){
 	}
 }
 
+function getChangelogPosts($db, $postID = false){
+	if($postID == false){
+		$result = $db->prepare("SELECT * FROM changelog ORDER BY id DESC");
+		$result = $result->execute();
+		return $result;
+	}elseif($postID != false){
+		$result = $db->prepare("SELECT * FROM changelog WHERE id = :id");
+		$result->bindValue(':id', $postID);
+		$result = $result->execute();
+		return $result->fetchArray();
+	}
+}
+
 
 function getContentFromTemplate($name, $endung){
 

@@ -155,7 +155,9 @@ header nav#normal ul li:hover > ul {
 
 .content {
 	margin: 14rem;
-	font-size: 1.5rem;
+	font-size: 1.7rem;
+	color: #fff;
+	text-shadow: 0.5px 0.5px 1px #000; 
 }
 
 

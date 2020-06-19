@@ -6,12 +6,22 @@ include 'main.php';
 	
 	$noPermission = "<div class='noPermission'><div>Keine Berechtigung!</div></div>";
 
-	if(isset($_POST['usid']) && isset($_POST['level']) && getPermission($db, $_SESSION['uid']) >=2){
+	if(isset($_POST['usid']) && isset($_POST['level']) && isAdmin($db, $_SESSION['uid'])){
 		$smt = $db->prepare("UPDATE permissions SET permission = :berechtigung WHERE uid = :uid");
 		$smt->bindValue(':berechtigung', $_POST['level']);
 		$smt->bindValue('uid', $_POST['usid']);
 		$smt->execute();
 		$info = "Berechtigung gesetzt!";
+	}
+
+	if(isset($_POST['changelog_head']) && isset($_POST['changelog_body']) && isModerator($db, $_SESSION['uid'])){
+		$smt = $db->prepare("INSERT INTO changelog (uid_creator, header, change) VALUES (:uid_creator, :header, :body)");
+		$smt->bindValue(':uid_creator', $_SESSION['uid']);
+		$smt->bindValue(':header', filter_var($_POST['changelog_head'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+		$smt->bindValue(':body', filter_var($_POST['changelog_body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+		$smt->execute();
+
+		$changelog_message = "Changelog wurde erstellt!";
 	}
 
 
@@ -21,7 +31,7 @@ $userinfo = getUserinformation($db);
 if(isset($_GET['sb'])){
 	if($_GET['sb'] == "uebersicht"){
 		$content = $uebersicht;
-	}elseif (($_GET['sb'] == "nutzer") && getPermission($db, $_SESSION['uid']) >= 4) {
+	}elseif (($_GET['sb'] == "nutzer") && isAdmin($db, $_SESSION['uid'])) {
 		$content = "
 		<div class='outer-form'>
 			<form method='POST'>
@@ -39,6 +49,20 @@ if(isset($_GET['sb'])){
 				<input type='submit' value='&Auml;ndern'/>
 			</form>
 		</div>";
+
+
+
+	}elseif (($_GET['sb'] == "changelog") && isModerator($db, $_SESSION['uid'])) {
+		$content = "<h2>Changelog Management</h2>
+					<h3>Changelog hinzuf&uuml;gen</h3>
+					";
+		$content .= "				<form method='POST'>";
+		$content .= "					<div><label>Überschrift:</label><br>";
+		$content .= "							<input type='text' name='changelog_head' required></div>";
+		$content .= "							<label>Changelog: <br><textarea id='text' name='changelog_body' cols='100' rows='10' required></textarea></label>";
+		$content .= "					<br><input type='submit' value='Erstellen'/>";
+		$content .= "				</form>";
+		$content .= "				<div class='information'>".$changelog_message."</div>";
 	}
 
 
@@ -73,7 +97,7 @@ if(isset($_GET['sb'])){
 	 	echo getNavigationbar($db);
 	}
 	if(isset($_SESSION['uid'])){
-		if(getPermission($db, $_SESSION['uid']) >= 3){
+		if(isModerator($db, $_SESSION['uid'])){
 ?>
 <div class='container-admin'>
 	<div class="sidebar">

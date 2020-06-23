@@ -209,6 +209,20 @@ function getChangelogPosts($db, $postID = false){
 	}
 }
 
+
+function getNewsPosts($db, $postID = false){
+	if($postID == false){
+		$result = $db->prepare("SELECT * FROM neuigkeiten ORDER BY id DESC");
+		$result = $result->execute();
+		return $result;
+	}elseif($postID != false){
+		$result = $db->prepare("SELECT * FROM neuigkeiten WHERE id = :id");
+		$result->bindValue(':id', $postID);
+		$result = $result->execute();
+		return $result->fetchArray();
+	}
+}
+
 function verifyEmail($db, $userid, $token){
 	if($token != '######'){
 		$smt = $db->prepare("SELECT email_token FROM users WHERE id = :uid");
@@ -218,7 +232,7 @@ function verifyEmail($db, $userid, $token){
 
 		if($smt['email_token'] == $token){
 			$smt = $db->prepare("UPDATE users SET verify_email = 1 WHERE id = :uid");
-			$smt->bindValue('uid', $userid);
+			$smt->bindValue(':uid', $userid);
 			$smt->execute();
 
 			return true;
@@ -237,7 +251,7 @@ function verifyTeamspeak($db, $userid, $token){
 
 		if($smt['teamspeak_token'] == $token){
 			$smt = $db->prepare("UPDATE users SET verify_teamspeak = 1 WHERE id = :uid");
-			$smt->bindValue('uid', $userid);
+			$smt->bindValue(':uid', $userid);
 			$smt->execute();
 
 			return true;
@@ -247,6 +261,12 @@ function verifyTeamspeak($db, $userid, $token){
 	}
 }
 
+
+function generateToken(){
+	$token = openssl_random_pseudo_bytes(12);
+	$token = bin2hex($token);
+	return $token;
+}
 
 function getContentFromTemplate($name, $endung){
 

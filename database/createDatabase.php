@@ -1,30 +1,39 @@
 <?php
 	$db = new SQLite3("database.db");
 
+
+	//User Database
 	$db->exec("CREATE TABLE IF NOT EXISTS users(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		username VARCHAR(64) NOT NULL,
-		email VARCHAR(255) NOT NULL, 
+		email VARCHAR(255) NOT NULL,
 		passwort VARCHAR(255) NOT NULL,
+		verify_email INTEGER NOT NULL DEFAULT 0,
+		verify_teamspeak INTEGER NOT NULL DEFAULT 0,
 		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)");
 
+	//Permission Database
 	$db->exec("CREATE TABLE IF NOT EXISTS permissions(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		uid INTEGER NOT NULL,
 		permission INTEGER NOT NULL, 
 		developer INTEGER NOT NULL)");
 
+	//Setting for Developer and Debug Options
 	$db->exec("CREATE TABLE IF NOT EXISTS dev_settings(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		uid INTEGER NOT NULL,
 		debug INTEGER NOT NULL DEFAULT 0)");
 
+	//Password Reset Database
 	$db->exec("CREATE TABLE IF NOT EXISTS password_reset(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		uid INTEGER NOT NULL,
 		key VARCHAR(16) NOT NULL,
 		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)");
 
+
+	//Saving Changelogs
 	$db->exec("CREATE TABLE IF NOT EXISTS changelog(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		uid_creator INTEGER NOT NULL,
@@ -33,6 +42,36 @@
 		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)");
 
 	$db->exec("CREATE TABLE IF NOT EXISTS changelog_comments(
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		uid INTEGER NOT NULL,
+		comment VARCHAR NOT NULL,
+		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)");
+
+
+	//Saving Devlogs
+	$db->exec("CREATE TABLE IF NOT EXISTS devlog(
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		uid_creator INTEGER NOT NULL,
+		header VARCHAR NOT NULL,
+		log TEXT NOT NULL,
+		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)");
+
+	$db->exec("CREATE TABLE IF NOT EXISTS devlog_comments(
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		uid INTEGER NOT NULL,
+		comment VARCHAR NOT NULL,
+		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)");
+
+
+	//Saving News
+	$db->exec("CREATE TABLE IF NOT EXISTS neuigkeiten(
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		uid_creator INTEGER NOT NULL,
+		header VARCHAR NOT NULL,
+		neuigkeit TEXT NOT NULL,
+		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)");
+
+	$db->exec("CREATE TABLE IF NOT EXISTS neuigkeiten_comments(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		uid INTEGER NOT NULL,
 		comment VARCHAR NOT NULL,

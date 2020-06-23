@@ -24,6 +24,16 @@ include 'main.php';
 		$changelog_message = "Changelog wurde erstellt!";
 	}
 
+	if(isset($_POST['news_head']) && isset($_POST['news_body']) && isModerator($db, $_SESSION['uid'])){
+		$smt = $db->prepare("INSERT INTO neuigkeiten (uid_creator, header, neuigkeit) VALUES (:uid_creator, :header, :body)");
+		$smt->bindValue(':uid_creator', $_SESSION['uid']);
+		$smt->bindValue(':header', filter_var($_POST['news_head'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+		$smt->bindValue(':body', filter_var($_POST['news_body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+		$smt->execute();
+
+		$news_message = "Neuigkeit wurde erstellt!";
+	}
+
 
 
 $uebersicht = getContentFromTemplate("uebersicht", "html");
@@ -33,9 +43,9 @@ if(isset($_GET['sb'])){
 		$content = $uebersicht;
 	}elseif (($_GET['sb'] == "nutzer") && isAdmin($db, $_SESSION['uid'])) {
 		$content = "
-		<div class='outer-form'>
+		<h2>Changelog Verwaltung</h2>
 			<form method='POST'>
-				<h2>Berechtigungs Level &Auml;ndern</h2>
+				<h3>Berechtigungs Level &Auml;ndern</h3>
 				<div id='space'><label>Nutzer: ";
       		$content .= "<select name='usid'>";
       					while($dbsatz = $userinfo->fetchArray()){
@@ -47,22 +57,37 @@ if(isset($_GET['sb'])){
   				<div id='space'><label>Neues Level: <input type='number' name='level' min='0' max='4' required></label></div>
       			<p class='information'>".$info."</p>
 				<input type='submit' value='&Auml;ndern'/>
-			</form>
-		</div>";
+			</form>";
 
 
 
 	}elseif (($_GET['sb'] == "changelog") && isModerator($db, $_SESSION['uid'])) {
-		$content = "<h2>Changelog Management</h2>
+		$content = "<h2>Changelog Verwaltung</h2>
 					<h3>Changelog hinzuf&uuml;gen</h3>
-					";
-		$content .= "				<form method='POST'>";
-		$content .= "					<div><label>Überschrift:</label><br>";
-		$content .= "							<input type='text' name='changelog_head' required></div>";
-		$content .= "							<label>Changelog: <br><textarea id='text' name='changelog_body' cols='100' rows='10' required></textarea></label>";
-		$content .= "					<br><input type='submit' value='Erstellen'/>";
-		$content .= "				</form>";
-		$content .= "				<div class='information'>".$changelog_message."</div>";
+						<form method='POST'>
+							<label>&Uuml;berschrift:</label><br>
+							<input type='text' name='changelog_head' required>
+							<br><label>Changelog</label><br>
+							<textarea id='text' name='changelog_body' cols='100' rows='10' required></textarea><br>
+							<input type='submit' value='Erstellen'/>
+						</form>
+					<div class='information'>".$changelog_message."</div>";
+
+
+
+
+
+	}elseif (($_GET['sb'] == "news") && isModerator($db, $_SESSION['uid'])) {
+		$content = "<h2>Neuigkeiten Verwaltung</h2>
+					<h3>Neuigkeit hinzuf&uuml;gen</h3>
+						<form method='POST'>
+							<label>&Uuml;berschrift</label><br>
+							<input type='text' name='news_head' required>
+							<br><label>Neuigkeit</label><br>
+							<textarea id='text' name='news_body' cols='100' rows='10' required></textarea><br>
+							<input type='submit' value='Erstellen'/>
+						</from>
+					<div class='information'>".$news_message."</div>";
 	}
 
 
@@ -103,9 +128,18 @@ if(isset($_GET['sb'])){
 	<div class="sidebar">
 		<ul>
 			<li><a href="?sb=uebersicht">&Uuml;bersicht</a></li>
-			<li><a href="?sb=nutzer">Nutzer Verwaltung</a></li>
+			<?php
+			if(isAdmin($db, $_SESSION['uid'])){
+				echo '<li><a href="?sb=nutzer">Nutzer Verwaltung</a></li>';
+			}
+			?>
+			<li><a href="?sb=news">Neuigkeiten Verwaltung</a></li>
 			<li><a href="?sb=changelog">Changelog Verwaltung</a></li>
-			<li><a href="?sb=devlog">Devlog Verwaltung</a></li>
+			<?php
+			if(isDeveloper($db, $_SESSION['uid'])){
+				echo '<li><a href="?sb=devlog">Devlog Verwaltung</a></li>';
+			}
+			?>
 			<li><a href="?sb=antraege">Antrags Verwaltung</a></li>
 		</ul>
 	</div>

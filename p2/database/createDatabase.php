@@ -9,7 +9,9 @@
 		email VARCHAR(255) NOT NULL,
 		passwort VARCHAR(255) NOT NULL,
 		verify_email INTEGER NOT NULL DEFAULT 0,
+		email_token VARCHAR(64) NOT NULL DEFAULT '######',
 		verify_teamspeak INTEGER NOT NULL DEFAULT 0,
+		teamspeak_token VARCHAR(64) NOT NULL DEFAULT '######',
 		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)");
 
 	//Permission Database

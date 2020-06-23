@@ -209,6 +209,8 @@ function getChangelogPosts($db, $postID = false){
 	}
 }
 
+function verifyEmail($db, $userid)
+
 
 function getContentFromTemplate($name, $endung){
 

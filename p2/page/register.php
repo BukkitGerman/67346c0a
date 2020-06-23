@@ -113,7 +113,7 @@ if(isset($_GET['register'])){
 
 			if($result){
 				$token = generateToken();
-				$link = "https://gamer4life.net/verify.php?type=email&token=".$token;
+				$link = "https://gamer4life.net/verify.php?type=email&usr=".$uid."&token=".$token;
 
 				$smt = $db->prepare("UPDATE users SET email_token = :token WHERE email = :email");
 				$smt->bindValue(':email', $email);
@@ -122,10 +122,10 @@ if(isset($_GET['register'])){
 
 				mail($email, "E-Mail Verification for Gamer4Life.net", "Verify your E-Mail Adress for Gamer4Life.net. You need only to open the following link. " . $link);
 
-				echo "Registrierung erfolgreich!<br>
+				echo "<div class='content'>Registrierung erfolgreich!<br>
 				<a href='login.php'>Zum Login</a><br>
-				Bestätigungs E-Mail wurde versand!";
-				
+				Bestätigungs E-Mail wurde versand!</div>";
+
 				$Showform = false;
 			} else {
 				echo "Es ist ein Fehler aufgetreten!";

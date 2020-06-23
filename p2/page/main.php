@@ -209,7 +209,43 @@ function getChangelogPosts($db, $postID = false){
 	}
 }
 
-function verifyEmail($db, $userid)
+function verifyEmail($db, $userid, $token){
+	if($token != '######'){
+		$smt = $db->prepare("SELECT email_token FROM users WHERE id = :uid");
+		$smt->bindValue(':uid', $userid);
+		$smt = $smt->execute();
+		$smt = $smt->fetchArray();
+
+		if($smt['email_token'] == $token){
+			$smt = $db->prepare("UPDATE users SET verify_email = 1 WHERE id = :uid");
+			$smt->bindValue('uid', $userid);
+			$smt->execute();
+
+			return true;
+		}else{
+			return false;
+		}
+	}
+}
+
+function verifyTeamspeak($db, $userid, $token){
+	if($token != '######'){
+		$smt = $db->prepare("SELECT teamspeak_token FROM users WHERE id = :uid");
+		$smt->bindValue(':uid', $userid);
+		$smt = $smt->execute();
+		$smt = $smt->fetchArray();
+
+		if($smt['teamspeak_token'] == $token){
+			$smt = $db->prepare("UPDATE users SET verify_teamspeak = 1 WHERE id = :uid");
+			$smt->bindValue('uid', $userid);
+			$smt->execute();
+
+			return true;
+		}else{
+			return false;
+		}
+	}
+}
 
 
 function getContentFromTemplate($name, $endung){

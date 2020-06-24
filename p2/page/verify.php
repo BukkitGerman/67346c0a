@@ -26,7 +26,9 @@ if(isset($_GET['type']) && isset($_GET['usr']) && isset($_GET['token'])){
 		$content = "<p>Bereits Verifiziert!</p>";
 	}
 	}elseif ($_GET['type'] == 'teamspeak') {
-
+		//************************//
+		//TODO: Add Functionality!//
+		//************************//
 	}
 }
 ?>

@@ -60,10 +60,20 @@ div.sidebar ul li:hover > a {
 }
 
 .information {
-	color: #196619;
+	position: fixed;
+	padding: 10px;
+	opacity: 0%;
+	color: #fff;
+	vertical-align: middle;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	background: #4cd137;
+	border-radius: 20px;
+	border: 1px solid #2f3640;
+	text-align: center;
 	animation: info 8s ease-out;
 	align-self: center;
-	opacity: 0%;
 }
 
 .noPermission {

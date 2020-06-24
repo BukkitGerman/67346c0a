@@ -223,6 +223,19 @@ function getNewsPosts($db, $postID = false){
 	}
 }
 
+function getDevlogPosts($db, $postID = false){
+	if($postID == false){
+		$result = $db->prepare("SELECT * FROM devlog ORDER BY id DESC");
+		$result = $result->execute();
+		return $result;
+	}elseif($postID != false){
+		$result = $db->prepare("SELECT * FROM devlog WHERE id = :id");
+		$result->bindValue(':id', $postID);
+		$result = $result->execute();
+		return $result->fetchArray();
+	}
+}
+
 function verifyEmail($db, $userid, $token){
 	if($token != '######'){
 		$smt = $db->prepare("SELECT email_token FROM users WHERE id = :uid");

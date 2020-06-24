@@ -57,10 +57,34 @@ include 'main.php';
 	}
 
 
+	//*******************************************//
+	//*************Devlog Management*************//
+	//*******************************************//
+
+	if(isset($_POST['devlog_head']) && isset($_POST['devlog_body']) && isDeveloper($db, $_SESSION['uid'])){
+		$smt = $db->prepare("INSERT INTO devlog (uid_creator, header, log) VALUES (:uid_creator, :header, :body)");
+		$smt->bindValue(':uid_creator', $_SESSION['uid']);
+		$smt->bindValue(':header', filter_var($_POST['devlog_head'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+		$smt->bindValue(':body', filter_var($_POST['devlog_body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+		$smt->execute();
+
+		$devlog_message = "Devlog wurde erstellt!";
+	}
+
+	if(isset($_POST['devlog_rm_id']) && isDeveloper($db, $_SESSION['uid'])){
+		$smt = $db->prepare("DELETE FROM devlog WHERE id = :id");
+		$smt->bindValue(":id", $_POST['devlog_rm_id']);
+		$smt->execute();
+
+		$devlog_message = "Devlog wurde gel&ouml;scht!";
+	}
+
+
 
 $uebersicht = getContentFromTemplate("uebersicht", "html");
 $userinfo = getUserinformation($db);
 $changelogPosts = getChangelogPosts($db);
+$devlogPosts = getDevlogPosts($db);
 
 if(isset($_GET['sb'])){
 	if($_GET['sb'] == "uebersicht"){
@@ -113,7 +137,7 @@ if(isset($_GET['sb'])){
 						</form>
 					</div>
 
-					<div class='information'>".$changelog_message."</div>";
+					<div class='information'>  ".$changelog_message."  </div>";
 
 
 
@@ -129,7 +153,36 @@ if(isset($_GET['sb'])){
 							<input type='submit' value='Erstellen'/>
 						</from>
 					</div>
-					<div class='information'>".$news_message."</div>";
+					<div class='information'>  ".$news_message."  </div>";
+	}elseif(($_GET['sb'] == "devlog") && isDeveloper($db, $_SESSION['uid'])) {
+		$content = "<h2>Devlog Verwaltung</h2>
+					<div>
+					<h3>Devlog hinzuf&uuml;gen</h3>
+						<form method='POST'>
+							<label>&Uuml;berschrift:</label><br>
+							<input type='text' name='devlog_head' required>
+							<br><label>Devlog</label><br>
+							<textarea id='text' name='devlog_body' cols='100' rows='10' required></textarea><br>
+							<input type='submit' value='Erstellen'/>
+						</form>
+					</div>
+					<hr/>
+					<div>
+					<h3>Devlog l&ouml;schen</h3>
+						<form method='POST'>
+							<label>Devlog Ausw&auml;hlen</label>
+							<br>
+							<select name='devlog_rm_id'>";
+							while($dbsatz = $devlogPosts->fetchArray()){
+								$content .= "<option value='".$dbsatz['id']."'>".$dbsatz['id'].", ".$dbsatz['header']."</option>";
+							}
+		$content .= "		</select>
+							<br><br>
+							<input type='submit' value='L&ouml;schen'/>
+						</form>
+					</div>
+
+					<div class='information'>  ".$devlog_message."  </div>";
 	}
 
 

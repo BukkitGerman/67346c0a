@@ -26,8 +26,8 @@ include 'main.php';
 	if(isset($_POST['changelog_head']) && isset($_POST['changelog_body']) && isModerator($db, $_SESSION['uid'])){
 		$smt = $db->prepare("INSERT INTO changelog (uid_creator, header, change) VALUES (:uid_creator, :header, :body)");
 		$smt->bindValue(':uid_creator', $_SESSION['uid']);
-		$smt->bindValue(':header', filter_var($_POST['changelog_head'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
-		$smt->bindValue(':body', filter_var($_POST['changelog_body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+		$smt->bindValue(':header', filterText($_POST['changelog_head']));
+		$smt->bindValue(':body', filterText($_POST['changelog_body']));
 		$smt->execute();
 
 		$changelog_message = "Changelog wurde erstellt!";
@@ -49,8 +49,8 @@ include 'main.php';
 	if(isset($_POST['news_head']) && isset($_POST['news_body']) && isModerator($db, $_SESSION['uid'])){
 		$smt = $db->prepare("INSERT INTO neuigkeiten (uid_creator, header, neuigkeit) VALUES (:uid_creator, :header, :body)");
 		$smt->bindValue(':uid_creator', $_SESSION['uid']);
-		$smt->bindValue(':header', filter_var($_POST['news_head'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
-		$smt->bindValue(':body', filter_var($_POST['news_body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+		$smt->bindValue(':header', filterText($_POST['news_head']));
+		$smt->bindValue(':body', filterText($_POST['news_body']));
 		$smt->execute();
 
 		$news_message = "Neuigkeit wurde erstellt!";
@@ -71,8 +71,8 @@ include 'main.php';
 	if(isset($_POST['devlog_head']) && isset($_POST['devlog_body']) && isDeveloper($db, $_SESSION['uid'])){
 		$smt = $db->prepare("INSERT INTO devlog (uid_creator, header, log) VALUES (:uid_creator, :header, :body)");
 		$smt->bindValue(':uid_creator', $_SESSION['uid']);
-		$smt->bindValue(':header', filter_var($_POST['devlog_head'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
-		$smt->bindValue(':body', filter_var($_POST['devlog_body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+		$smt->bindValue(':header', filterText($_POST['devlog_head']));
+		$smt->bindValue(':body', filterText($_POST['devlog_body']));
 		$smt->execute();
 
 		$devlog_message = "Devlog wurde erstellt!";

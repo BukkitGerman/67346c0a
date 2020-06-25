@@ -56,6 +56,13 @@ include 'main.php';
 		$news_message = "Neuigkeit wurde erstellt!";
 	}
 
+	if(isset($_POST['news_rm_id']) && isModerator($db, $_SESSION['uid'])){
+		$smt = $db->prepare("DELETE FROM neuigkeiten WHERE id = :id");
+		$smt->bindValue(":id", $_POST['news_rm_id']);
+		$smt->execute();
+
+		$news_message = "Neuigkeit wurde gel&ouml;scht!";
+	}
 
 	//*******************************************//
 	//*************Devlog Management*************//
@@ -85,13 +92,14 @@ $uebersicht = getContentFromTemplate("uebersicht", "html");
 $userinfo = getUserinformation($db);
 $changelogPosts = getChangelogPosts($db);
 $devlogPosts = getDevlogPosts($db);
+$newsPosts = getNewsPosts($db);
 
 if(isset($_GET['sb'])){
 	if($_GET['sb'] == "uebersicht"){
 		$content = $uebersicht;
 	}elseif (($_GET['sb'] == "nutzer") && isAdmin($db, $_SESSION['uid'])) {
 		$content = "
-		<h2>Changelog Verwaltung</h2>
+		<h2>Nutzer Verwaltung</h2>
 			<form method='POST'>
 				<h3>Berechtigungs Level &Auml;ndern</h3>
 				<div id='space'><label>Nutzer: ";
@@ -151,9 +159,27 @@ if(isset($_GET['sb'])){
 							<br><label>Neuigkeit</label><br>
 							<textarea id='text' name='news_body' cols='100' rows='10' required></textarea><br>
 							<input type='submit' value='Erstellen'/>
-						</from>
+						</form>
 					</div>
+					<hr/>
+					<div>
+					<h3>Neuigkeit l&ouml;schen</h3>
+						<form method='POST'>
+							<label>Neuigkeit Ausw&auml;hlen</label>
+							<br>
+							<select name='news_rm_id'>";
+							while($dbsatz = $newsPosts->fetchArray()){
+								$content .= "<option value='".$dbsatz['id']."'>".$dbsatz['id'].", ".$dbsatz['header']."</option>";
+							}
+		$content .= "		</select>
+							<br><br>
+							<input type='submit' value='L&ouml;schen'/>
+						</form>
+					</div>
+
 					<div class='information'>  ".$news_message."  </div>";
+
+
 	}elseif(($_GET['sb'] == "devlog") && isDeveloper($db, $_SESSION['uid'])) {
 		$content = "<h2>Devlog Verwaltung</h2>
 					<div>

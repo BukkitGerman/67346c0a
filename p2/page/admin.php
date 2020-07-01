@@ -13,9 +13,17 @@ include 'main.php';
 	if(isset($_POST['usid']) && isset($_POST['level']) && isAdmin($db, $_SESSION['uid'])){
 		$smt = $db->prepare("UPDATE permissions SET permission = :berechtigung WHERE uid = :uid");
 		$smt->bindValue(':berechtigung', $_POST['level']);
-		$smt->bindValue('uid', $_POST['usid']);
+		$smt->bindValue(':uid', $_POST['usid']);
 		$smt->execute();
 		$info = "Berechtigung gesetzt!";
+	}
+
+	if(isset($_POST['usid-dev']) && isset($_POST['level-dev']) && isDeveloper($db, $_SESSION['uid'])){
+		$smt = $db->prepare("UPDATE permissions SET developer = :berechtigung WHERE uid = :uid");
+		$smt->bindValue(':berechtigung', $_POST['level-dev']);
+		$smt->bindValue(':uid', $_POST['usid-dev']);
+		$smt->execute();
+		$infoDev_message = "Developer Berechtigung gesetzt!";
 	}
 
 
@@ -100,8 +108,8 @@ if(isset($_GET['sb'])){
 	}elseif (($_GET['sb'] == "nutzer") && isAdmin($db, $_SESSION['uid'])) {
 		$content = "
 		<h2>Nutzer Verwaltung</h2>
+		<h3>Berechtigungs Level &Auml;ndern</h3>
 			<form method='POST'>
-				<h3>Berechtigungs Level &Auml;ndern</h3>
 				<div id='space'><label>Nutzer: ";
       		$content .= "<select name='usid'>";
       					while($dbsatz = $userinfo->fetchArray()){
@@ -113,7 +121,26 @@ if(isset($_GET['sb'])){
   				<div id='space'><label>Neues Level: <input type='number' name='level' min='0' max='4' required></label></div>
       			<p class='information'>".$info."</p>
 				<input type='submit' value='&Auml;ndern'/>
-			</form>";
+			</form><br/><hr/>";
+
+			if(isDeveloper($db, $_SESSION['uid'])){
+				$content .= "
+				<h3>Developer Status Setzen</h3>
+				<form method='POST'>
+					<label>Nutzer: </label>";
+			$content .= "<select name='usid-dev'>";
+      					while($dbsatz = $userinfo->fetchArray()){
+      						$content.= "<option value='".$dbsatz['id']."'>".$dbsatz['id'].",  ".$dbsatz['username']." lv.".getPermission($db, $dbsatz['id']).", Dev: ". getDeveloperStatus($db, $dbsatz['id']). ".
+      									</option>";
+      					}
+
+				$content .= "
+					</select><br/>
+					<label>Neues Level: <input type='number' name='level-dev' min='0' max='1' required></label>
+					<p class='information'>".$infoDev_message."</p><br/>
+					<input type='submit' value='&Auml;ndern'/>
+				</form>";
+			}
 
 
 

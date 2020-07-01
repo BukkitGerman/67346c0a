@@ -11,6 +11,15 @@ function getPermission($db, $userid)
 	return $result['permission'];
 }
 
+function getDeveloperStatus($db, $userid)
+{
+	$result = $db->prepare("SELECT developer FROM permissions WHERE uid = :usid");
+	$result->bindValue(':usid', $userid);
+	$result = $result->execute();
+	$result = $result->fetchArray();
+	return $result['developer'];
+}
+
 function isDeveloper($db, $userid)
 {
 	$result = $db->prepare("SELECT developer FROM permissions WHERE uid = :usid");

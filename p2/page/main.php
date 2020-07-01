@@ -120,7 +120,7 @@ function getNavigationbar($db, $uid = false)
 		</li>";
 		if($uid != false){
 			if(isAdmin($db, $uid)){
-				$result .= "<li><a href='profil.php'>Profil</a>
+				$result .= "<li><a href='profil.php?user=".$_SESSION['uid']."'>Profil</a>
 							<ul>
 								<li id='welcome'>Willkommen, ". getUsername($db, $uid) ."</li>
 								<li><a href='admin.php'>Administration</a></li>
@@ -134,7 +134,7 @@ function getNavigationbar($db, $uid = false)
 							</ul>
 						</li>";
 			}else{
-				$result .= "<li><a href='profil.php'>Profil</a>
+				$result .= "<li><a href='profil.php?user=".$_SESSION['uid']."'>Profil</a>
 							<ul>
 								<li id='welcome'>Willkommen, ". getUsername($db, $uid) ."</li>
 								<li><a href='logout.php'>Logout</a></li>

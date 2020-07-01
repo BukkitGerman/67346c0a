@@ -19,7 +19,7 @@ if(isset($_GET['login'])){
 		if(password_verify($passwort, $userpw)){
 			$_SESSION['uid'] = $user['id'];
 
-			die('Login erfolgreich. Weiter zu <a href="profile.php?user='.$_SESSION["uid"].'">deinem Profil!</a>');
+			die('Login erfolgreich. Weiter zu <a href="profil.php?user='.$_SESSION["uid"].'">deinem Profil!</a>');
 
 	    } else {
 	        $errorMessage = "E-Mail oder Passwort war ungültig<br>";

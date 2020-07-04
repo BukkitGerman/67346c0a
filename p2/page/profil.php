@@ -30,10 +30,10 @@ if(isset($_SESSION['uid']))
 	$sidebar = "
 		<div class='sidebar'>
 			<ul>
-				<li><a href='?sb=Test1'>Test1</a></li>
-				<li><a href='?sb=Test2'>Test2</a></li>
-				<li><a href='?sb=Test3'>Test3</a></li>
-				<li><a href='?sb=Test4'>Test4</a></li>
+				<li><a href='?user=".$_SESSION['uid']."&sb=Test1'>Test1</a></li>
+				<li><a href='?user=".$_SESSION['uid']."&sb=Test2'>Test2</a></li>
+				<li><a href='?user=".$_SESSION['uid']."&sb=Test3'>Test3</a></li>
+				<li><a href='?user=".$_SESSION['uid']."&sb=Test4'>Test4</a></li>
 			</ul>
 		</div>";
 	

@@ -50,7 +50,15 @@ if(isset($_SESSION['uid']))
 	}
 	?>
 	<div class="content-profil">
-		
+		 <div class="inner-profil">
+		 	<div class="header-profil">
+			 	<div class="background-profil">
+				 		<div class="picture-profil rund">
+			 				<img class="rund rund-img" src="img/profil/test.png"/>
+			 			</div>
+			 	</div>
+		 	</div>
+		 </div>
 	</div>
 </div>
 

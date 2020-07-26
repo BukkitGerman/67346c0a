@@ -1,13 +1,14 @@
 .container-profil {
-	position: fixed;
+	position: flex;
 	margin: 7rem 0 7rem 0;
 	height: 100%;
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
 } 
 
 .sidebar {
-	margin: 0;
+	margin: 0px;
 	padding: 0;
 	width: 30rem;
 	font-size: 2rem;
@@ -52,9 +53,58 @@ div.sidebar ul li:hover > a {
 
 .content-profil {
 	padding: 3rem;
-	min-width: 55vw;
+	width: 80vw;
+	min-width: 60vw;
 	font-size: 2rem;
 	background: transparent;
 	color: #fff;
+	background: #ff0;
+	opacity: 0.5;
 	text-shadow: 1px 1px 2px #000; 
+}
+
+.inner-profil {
+	position: relative;
+	margin: 20% 50%;
+	transform: translate(-50%, -50%);
+	width: 70vw;
+	height: 60vh;
+	border-radius: 6px;
+	border-color: #232831;
+	border-top: inset;
+	border-bottom: outset;
+	background: #ff88ff
+}
+
+.header-profil {
+	display: flex;
+	flex-direction: row;
+}
+
+.rund {
+	border-radius: 100%;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	width: 10vw;
+	height: 20vh;
+}
+
+.rund-img{
+	border: 0.2rem solid #fff;
+}
+
+.picture-profil {
+	position: relative;
+	margin: 2vh;
+	width: 10vw;
+	height: 20vh;
+	background: #00ff00;
+}
+
+.background-profil {
+	position: relative;
+	background-image: url("../img/profil/testbg.jpg");
+	width: 70vw;
+	height: 25vh;
+
 }

@@ -30,12 +30,24 @@ if(isset($_SESSION['uid']))
 	$sidebar = "
 		<div class='sidebar'>
 			<ul>
-				<li><a href='?user=".$_SESSION['uid']."&sb=Test1'>Test1</a></li>
-				<li><a href='?user=".$_SESSION['uid']."&sb=Test2'>Test2</a></li>
+				<li><a href='?user=".$_SESSION['uid']."&sb=profil'>Profil</a></li>
+				<li><a href='?user=".$_SESSION['uid']."&sb=settings'>Einstellungen</a></li>
 				<li><a href='?user=".$_SESSION['uid']."&sb=Test3'>Test3</a></li>
 				<li><a href='?user=".$_SESSION['uid']."&sb=Test4'>Test4</a></li>
 			</ul>
 		</div>";
+
+	$profil_normal = "
+			<div class='inner-profil'>
+			 	<div class='header-profil'>
+				 	<div class='background-profil'>
+					 		<div class='picture-profil rund'>
+				 				<img class='rund rund-img' src='img/profil/test.png'/>
+				 			</div>
+				 	</div>
+			 	</div>
+			</div>";
+
 	
 	if(isset($_GET['user'])){
 		if($_GET['user'] == $_SESSION['uid']){
@@ -46,19 +58,32 @@ if(isset($_SESSION['uid']))
 			}else{
 				echo $sidebar;
 			}
+		
+
+
+			if(isset($_GET['sb'])){
+				if($_GET['sb'] == "profil"){
+					$content = $profil_normal;
+				}elseif($_GET['sb'] == "settings"){
+					$content = "Test";
+				}
+			}else{
+				$content = $profil_normal;
+			}
+		}else{
+			$content = $profil_normal;
 		}
 	}
+
+	
+
+
+	
 	?>
+
+
 	<div class="content-profil">
-		 <div class="inner-profil">
-		 	<div class="header-profil">
-			 	<div class="background-profil">
-				 		<div class="picture-profil rund">
-			 				<img class="rund rund-img" src="img/profil/test.png"/>
-			 			</div>
-			 	</div>
-		 	</div>
-		 </div>
+		 <?php echo $content; ?>
 	</div>
 </div>
 

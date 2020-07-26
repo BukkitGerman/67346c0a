@@ -38,15 +38,13 @@ if(isset($_SESSION['uid']))
 		</div>";
 
 	$profil_normal = "
-			<div class='inner-profil'>
 			 	<div class='header-profil'>
 				 	<div class='background-profil'>
 					 		<div class='picture-profil rund'>
 				 				<img class='rund rund-img' src='img/profil/test.png'/>
 				 			</div>
 				 	</div>
-			 	</div>
-			</div>";
+			 	</div>";
 
 	
 	if(isset($_GET['user'])){
@@ -83,7 +81,9 @@ if(isset($_SESSION['uid']))
 
 
 	<div class="content-profil">
+		<div class='inner-profil'>
 		 <?php echo $content; ?>
+		</div>
 	</div>
 </div>
 
